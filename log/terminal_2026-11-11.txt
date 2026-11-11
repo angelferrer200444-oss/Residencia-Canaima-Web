@@ -1,2 +1,0 @@
-﻿[miércoles 11/11/2026 15:16:04] $ git status
-[miércoles 11/11/2026 15:17:42] $ git status
