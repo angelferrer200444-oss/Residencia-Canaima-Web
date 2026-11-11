@@ -1,0 +1,21 @@
+/* ========================================
+   AJUSTES RESPONSIVE DEL ENCABEZADO
+======================================== */
+
+/* Escritorios pequeños y pantallas grandes */
+@media (min-width: 621px) {
+
+    .section-heading h2 {
+        transform: translateX(clamp(-80px, -5vw, -35px));
+    }
+
+}
+
+/* En móvil el título conserva su centrado */
+@media (max-width: 620px) {
+
+    .section-heading h2 {
+        transform: none;
+    }
+
+}

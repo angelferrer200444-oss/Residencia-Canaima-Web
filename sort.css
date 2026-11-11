@@ -1,0 +1,226 @@
+/* ========================================
+   ENCABEZADO DE MOVIMIENTOS
+======================================== */
+
+.ledger-section .section-heading {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    position: relative;
+    width: 100%;
+    min-height: 44px;
+    gap: 18px;
+
+    text-align: center !important;
+}
+
+/* ========================================
+   BOTÓN DE ORDENAMIENTO
+======================================== */
+
+.ledger-section .sort-container {
+    position: absolute !important;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 42px;
+    z-index: 50;
+}
+
+/* Botón de tres líneas */
+
+.ledger-section .sort-button {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    background: #ffffff;
+    border: 1px solid #d9dce3;
+    border-radius: 9px;
+
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.ledger-section .sort-button span {
+    display: block;
+    width: 19px;
+    height: 2px;
+
+    background: #414650;
+    border-radius: 2px;
+
+    transition: background 0.2s ease;
+}
+
+.ledger-section .sort-button:hover {
+    background: #f1f3f6;
+    border-color: #aeb5c1;
+}
+
+/* ========================================
+   MENÚ DESPLEGABLE
+======================================== */
+
+.ledger-section .sort-menu {
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+
+    width: 270px;
+    padding: 6px;
+
+    background: #ffffff;
+    border: 1px solid #e0e3e9;
+    border-radius: 10px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+}
+
+.ledger-section .sort-menu[hidden] {
+    display: none !important;
+}
+
+/* ========================================
+   OPCIONES DEL MENÚ
+======================================== */
+
+.ledger-section .sort-option {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+
+    color: #414650;
+    background: transparent;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        padding-left 0.2s ease;
+}
+
+/* Al pasar el cursor */
+
+.ledger-section .sort-option:hover {
+    color: #30343b;
+    background: #f0f1f5;
+    padding-left: 17px;
+}
+
+/* Al mantener pulsado */
+
+.ledger-section .sort-option:active {
+    background: #e5e7ed;
+}
+
+/* Accesibilidad: navegación con teclado */
+
+.ledger-section .sort-option:focus-visible {
+    outline: 2px solid #8795ad;
+    outline-offset: -2px;
+    background: #f0f1f5;
+}
+
+
+/* ========================================
+   TÍTULO
+======================================== */
+
+.ledger-section .section-heading h2 {
+    flex: 1 1 auto;
+    margin: 0;
+
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+/* ========================================
+   BUSCADOR EN ESCRITORIO
+======================================== */
+
+.ledger-section .section-heading .search-container {
+    position: absolute !important;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 320px;
+    max-width: 320px;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* ========================================
+   ADAPTACIÓN A MÓVILES
+======================================== */
+
+@media (max-width: 620px) {
+
+    .ledger-section .section-heading {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 14px;
+    }
+
+    .ledger-section .section-heading h2 {
+        width: 100%;
+        flex: 1 1 100%;
+
+        text-align: center !important;
+        white-space: normal;
+    }
+
+    /* Buscador */
+    .ledger-section .section-heading .search-container {
+        position: relative !important;
+        top: auto;
+        right: auto;
+        transform: none;
+
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Botón más pequeño y ligeramente más arriba */
+    .ledger-section .sort-container {
+        width: 36px;
+        top: -4px;
+        transform: none;
+    }
+
+    .ledger-section .sort-button {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        gap: 4px;
+    }
+
+    .ledger-section .sort-button span {
+        width: 16px;
+        height: 2px;
+    }
+
+    .ledger-section .sort-menu {
+        width: min(270px, calc(100vw - 50px));
+    }
+
+}

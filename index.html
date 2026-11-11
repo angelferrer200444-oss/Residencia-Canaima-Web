@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="animations.css">
     <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="sort.css">
 
 </head>
 
@@ -51,7 +53,7 @@
 
                 <span class="period-label">PERÍODO</span>
 
-                <span class="period-value">Junio</span>
+                <span class="period-value">Febrero</span>
 
             </div>
 
@@ -63,8 +65,59 @@
         <section class="ledger-section">
 
             <div class="section-heading">
+
+                <!-- BOTÓN DE ORDENAMIENTO -->
+                <div class="sort-container">
+
+                    <button
+                        type="button"
+                        class="sort-button"
+                        id="sort-button"
+                        aria-expanded="false"
+                        aria-controls="sort-menu"
+                        aria-label="Ordenar movimientos"
+                        title="Ordenar movimientos"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!-- OPCIONES -->
+                    <div class="sort-menu" id="sort-menu" hidden>
+
+                        <button type="button" class="sort-option" data-sort="fecha-asc">
+                            Fecha: más antiguo → más reciente
+                        </button>
+
+                        <button type="button" class="sort-option" data-sort="fecha-desc">
+                            Fecha: más reciente → más antiguo
+                        </button>
+
+                        <button type="button" class="sort-option" data-sort="ingresos">
+                            Ingresos: mayor → menor
+                        </button>
+
+                        <button type="button" class="sort-option" data-sort="egresos">
+                            Egresos: mayor → menor
+                        </button>
+
+                        <button type="button" class="sort-option" data-sort="descripcion-asc">
+                            Descripción: A → Z
+                        </button>
+
+                        <button type="button" class="sort-option" data-sort="descripcion-desc">
+                            Descripción: Z → A
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- TÍTULO -->
                 <h2>Movimientos del mes</h2>
 
+                <!-- BUSCADOR -->
                 <div class="search-container">
                     <input
                         type="search"
@@ -75,7 +128,10 @@
                     >
                     <span class="search-icon" aria-hidden="true">⌕</span>
                 </div>
+
             </div>
+
+
 
 
             <div class="table-wrap">
@@ -172,6 +228,7 @@
 
     <script src="script.js"></script>
     <script src="search.js"></script>
+    <script src="sort.js"></script>
 
 </body>
 </html>
