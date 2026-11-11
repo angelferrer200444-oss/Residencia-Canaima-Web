@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filaAviso.classList.add("search-empty-row");
 
             const celda = document.createElement("td");
-            celda.colSpan = 6;
+            celda.colSpan = 7;
             celda.textContent = "No se encontraron movimientos.";
 
             filaAviso.appendChild(celda);

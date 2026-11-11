@@ -14,6 +14,11 @@
 /* En móvil el título conserva su centrado */
 @media (max-width: 620px) {
 
+    .ledger th:first-child {
+        min-width: 48px;
+        white-space: nowrap;
+    }
+
     .section-heading h2 {
         transform: none;
     }

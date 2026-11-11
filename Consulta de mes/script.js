@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fila.classList.add("empty-row");
 
         const celda = document.createElement("td");
-        celda.colSpan = 6;
+        celda.colSpan = 7;
         celda.textContent = mensaje;
 
         fila.appendChild(celda);
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            if (datos.length !== 6) {
+            if (datos.length < 6 || datos.length > 7) {
                 console.warn("Línea ignorada:", linea);
                 return;
             }
@@ -103,7 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     fila.appendChild(celda);
                 });
 
+            // CELDA VACÍA DE FACTURA
+            const celdaFactura = document.createElement("td");
+            celdaFactura.classList.add("invoice-cell");
+
+            fila.appendChild(celdaFactura);
+
             tabla.appendChild(fila);
+
             movimientosValidos++;
 
         });
