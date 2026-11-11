@@ -1,2 +1,0 @@
-﻿[miércoles 11/11/2026 15:04:27] $ Write-Output prueba-interactiva
-[miércoles 11/11/2026 15:05:57] $ ./index.html
