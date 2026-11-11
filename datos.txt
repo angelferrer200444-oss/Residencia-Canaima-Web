@@ -1,0 +1,32 @@
+02;Apertura de saldo;0;0;1.851,25;
+11;Copias;0;2.116,00;-264,75;
+12;Aporte Edif.3 / 1 Quincena;7.000,00;0;6.735,25;
+12;Aporte Edif.1 / 1 Quincena;7.000,00;0;13.735,25;
+12;Aporte Edif.2 / 1 Quincena;7.000,00;0;20.735,25;
+12;Aporte Edif.6 / 1 Quincena;7.000,00;0;27.735,25;
+13;Aporte Edif.5 / 1 Quincena;6.698,00;0;34.433,25;
+13;Aporte Edif.4 / 1 Quincena;7.000,00;0;41.433,25;
+14;Pago Salon de Fiesta;51.526,00;0;92.959,25;
+14;1 Quincena Vigilancia 1 Porton;0;32.000,00;60.959,25;
+14;1 Quincena Limpieza;0;26.890,00;34.069,25;
+15;1 Quincena Vigilancia 2 Porton;0;27.768,00;6.301,25;
+16;Pago ConserjerÃ­a Edif. 3;28.000,00;0;34.301,25;
+17;Compra cemento/arena/reparacion de Garita y carpinteria entrada principal;0;8.000,00;26.301,25;
+17;Compra cemento y arena completar;0,00;2.000,00;24.301,25;
+17;Pago traslado materiales;0,00;5.000,00;19.301,25;
+18;Traslado DARU;0,00;3.200,00;16.101,25;
+18;Compra Shopping papeleria y llave garita;0;4.673,00;11.428,25;
+18;Traslado Registro principal;0,00;1.000,00;10.428,25;
+27;Aporte Edif.3 / 2 Quincena;7.315,00;0;17.743,25;
+27;Aporte Edif.2 / 2 Quincena;7.350,00;0;25.093,25;
+27;Aporte Edif.1 / 2 Quincena;7.315,00;0;32.408,25;
+27;Aporte Edif.4 / 2 Quincena;7.350,00;0;39.758,25;
+27;Aporte Edif.6 / 2 Quincena;7.350,00;0;47.108,25;
+27;Aporte Edif.5 / 2 Quincena;7.350,00;0;54.458,25;
+28;Pago Salon de Fiesta;21.000,00;0;75.458,25;417,35
+28;Pago ConserjerÃ­a 6;29.215,00;0;104.673,25;417,35
+28;2 Quincena Vigilancia 1 Porton;0;33.600,00;71.073,25;
+28;2 Quincena Vigilancia 2 Porton;0;33.600,00;37.473,25;
+28;2 Quincena Limpieza;0;31.500,00;5.973,25;
+
+

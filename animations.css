@@ -1,0 +1,187 @@
+/* ========================================
+   RESIDENCIA CANAIMA
+   ANIMACIONES E INTERACCIONES
+======================================== */
+
+
+/* ========================================
+   TRANSICIONES GENERALES
+======================================== */
+
+button,
+.period,
+.ledger-section,
+.closing-section,
+.summary-section,
+.summary-item,
+.ledger th,
+.ledger td {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+
+/* ========================================
+   BOTÓN DE REGRESO
+======================================== */
+
+.back-button:hover {
+    background: #dceede;
+    border-color: #79ad80;
+    color: #315c3b;
+
+    transform: translateX(-4px);
+
+    box-shadow: 0 4px 12px rgba(48, 91, 57, 0.12);
+}
+
+.back-button:active {
+    transform: scale(0.92);
+}
+
+
+/* ========================================
+   TARJETAS Y SECCIONES
+======================================== */
+
+.ledger-section:hover,
+.closing-section:hover,
+.summary-section:hover {
+
+    box-shadow: 0 9px 25px rgba(48, 91, 57, 0.10);
+
+    border-color: #bdd8c0;
+}
+
+
+/* ========================================
+   PERÍODO
+======================================== */
+
+.period:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #8dbb91;
+
+    box-shadow: 0 5px 14px rgba(48, 91, 57, 0.10);
+}
+
+
+/* ========================================
+   ENCABEZADOS DE TABLA
+======================================== */
+
+.ledger th:hover {
+
+    background: #cce5cf;
+    color: #274d30;
+}
+
+
+/* ========================================
+   FILAS DE LA TABLA
+======================================== */
+
+.ledger tbody tr:not(.empty-row):hover {
+
+    background: #f0f8f0;
+
+    transform: scale(1.002);
+}
+
+
+/* ========================================
+   RESUMEN FINANCIERO
+======================================== */
+
+.summary-item:hover {
+
+    transform: translateY(-3px);
+
+    background: #f3faf3;
+
+    border-color: #a9cfae;
+
+    box-shadow: 0 5px 13px rgba(48, 91, 57, 0.08);
+}
+
+
+/* TOTAL DEL CIERRE */
+
+.summary-total:hover {
+
+    background: #c8e5c5;
+
+    border-color: #91bd8e;
+}
+
+
+/* ========================================
+   CIERRE MENSUAL
+======================================== */
+
+.closing-line:hover {
+
+    background: #d9eddb;
+
+    border-color: #a9cfae;
+}
+
+
+/* ========================================
+   TEXTO DEL ENCABEZADO
+======================================== */
+
+.header-info h1 {
+    transition: color 0.25s ease;
+}
+
+.header-info h1:hover {
+    color: #548c60;
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+    }
+
+}
+
+
+/* ========================================
+   DISPOSITIVOS TÁCTILES
+======================================== */
+
+@media (hover: none) {
+
+    .ledger-section:hover,
+    .closing-section:hover,
+    .summary-section:hover,
+    .summary-item:hover,
+    .period:hover,
+    .closing-line:hover,
+    .header-info h1:hover {
+
+        transform: none;
+        box-shadow: none;
+
+    }
+
+}

@@ -3,11 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Residencia Canaima</title>
+    <meta name="theme-color" content="#f3f4f7">
+
+    <title>Residencia Canaima | Relación de gastos</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+
 </head>
+
 <body>
 
-    
+    <main class="page">
+
+        <!-- ENCABEZADO -->
+        <header class="page-header">
+
+            <!-- BOTÓN PARA RETROCEDER -->
+            <button
+                class="back-button"
+                type="button"
+                onclick="history.back()"
+                aria-label="Volver a la página anterior"
+                title="Volver"
+            >
+                <span aria-hidden="true">←</span>
+            </button>
+
+
+            <!-- INFORMACIÓN CENTRADA -->
+            <div class="header-info">
+
+                <p class="eyebrow">RESIDENCIA CANAIMA</p>
+
+                <h1>Relación de gastos</h1>
+
+                <p class="subtitle">
+                    Registro mensual de ingresos y egresos
+                </p>
+
+            </div>
+
+
+            <!-- PERÍODO -->
+            <div class="period">
+
+                <span class="period-label">PERÍODO</span>
+
+                <span class="period-value">Junio</span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- TABLA DE MOVIMIENTOS -->
+        <section class="ledger-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Movimientos del mes</h2>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+
+                <table class="ledger">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th class="number">Ingreso</th>
+                            <th class="number">Egreso</th>
+                            <th class="number">Saldo</th>
+                            <th class="number">Tasa</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <!-- Aquí se agregarán posteriormente los movimientos -->
+
+                        <tr class="empty-row">
+                            <td colspan="6">
+                                Todavía no hay movimientos registrados.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- CIERRE DEL MES -->
+        <section class="closing-section">
+
+            <h2>Cierre del mes</h2>
+
+            <div class="closing-line">
+                <span>Saldo al cierre</span>
+                <strong>—</strong>
+            </div>
+
+        </section>
+
+
+        <!-- RESUMEN FINANCIERO -->
+        <section class="summary-section">
+
+            <h2>Resumen financiero</h2>
+
+            <div class="summary-grid">
+
+                <article class="summary-item">
+                    <span>Total ingresos</span>
+                    <strong>—</strong>
+                </article>
+
+                <article class="summary-item">
+                    <span>Total egresos</span>
+                    <strong>—</strong>
+                </article>
+
+                <article class="summary-item">
+                    <span>Resultado</span>
+                    <strong>—</strong>
+                </article>
+
+                <article class="summary-item">
+                    <span>Saldo inicial</span>
+                    <strong>—</strong>
+                </article>
+
+                <article class="summary-item summary-total">
+                    <span>Total cierre del mes</span>
+                    <strong>—</strong>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="page-footer">
+            <span>Residencia Canaima</span>
+            <span>Relación mensual de ingresos y gastos</span>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
+

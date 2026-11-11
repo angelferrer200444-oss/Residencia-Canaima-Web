@@ -1,0 +1,794 @@
+/* ========================================
+   RESIDENCIA CANAIMA
+   RELACIÓN DE GASTOS
+   PALETA VERDE
+======================================== */
+
+:root {
+    --page-bg: #f1f7f1;
+    --surface: #ffffff;
+
+    --ink: #26372c;
+    --muted: #718276;
+
+    --line: #d5e3d7;
+
+    --header-bg: #dceede;
+    --header-ink: #315c3b;
+
+    --accent: #548c60;
+
+    --closing-bg: #e7f3e8;
+    --total-bg: #d5ebd2;
+
+    --radius: 12px;
+    --shadow: 0 5px 22px rgba(48, 91, 57, 0.06);
+}
+
+
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 32px 18px;
+
+    background: var(--page-bg);
+    color: var(--ink);
+
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.45;
+}
+
+.page {
+    width: min(100%, 1180px);
+    margin: 0 auto;
+}
+
+h1, h2, p {
+    margin-top: 0;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.eyebrow {
+    margin-bottom: 7px;
+
+    color: var(--accent);
+
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+}
+
+h1 {
+    margin-bottom: 5px;
+
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+    line-height: 1.15;
+}
+
+.subtitle {
+    margin-bottom: 0;
+
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.period {
+    min-width: 130px;
+
+    padding: 12px 17px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    background: var(--surface);
+    text-align: center;
+}
+
+.period-label,
+.period-value {
+    display: block;
+}
+
+.period-label {
+    margin-bottom: 3px;
+
+    color: var(--muted);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.period-value {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   SECCIONES
+======================================== */
+
+.ledger-section,
+.closing-section,
+.summary-section {
+
+    margin-bottom: 20px;
+    padding: 22px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 17px;
+}
+
+.section-heading h2,
+.closing-section h2,
+.summary-section h2 {
+
+    margin-bottom: 4px;
+    font-size: 1.08rem;
+}
+
+.section-heading p {
+    margin-bottom: 0;
+
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+
+/* ========================================
+   TABLA DE MOVIMIENTOS
+======================================== */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ledger {
+    width: 100%;
+
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    font-size: 0.9rem;
+}
+
+.ledger th,
+.ledger td {
+
+    padding: 12px 10px;
+
+    border: 1px solid #c6d9c9;
+
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.ledger th {
+
+    background: var(--header-bg);
+    color: var(--header-ink);
+
+    font-weight: 700;
+}
+
+.ledger th:first-child {
+    width: 9%;
+}
+
+.ledger th:nth-child(2) {
+    width: 34%;
+}
+
+.ledger th:nth-child(n+3) {
+    width: 14.25%;
+}
+
+.ledger .number {
+    text-align: right;
+}
+
+.empty-row td {
+
+    padding: 28px 12px;
+
+    color: var(--muted);
+    text-align: center;
+}
+
+
+/* ========================================
+   CIERRE DEL MES
+======================================== */
+
+.closing-section h2,
+.summary-section h2 {
+
+    margin-bottom: 14px;
+}
+
+.closing-line {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+    padding: 13px 15px;
+
+    border: 1px solid #c9dfcb;
+    border-radius: 7px;
+
+    background: var(--closing-bg);
+}
+
+.closing-line strong,
+.summary-item strong {
+
+    color: #315c3b;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ========================================
+   RESUMEN FINANCIERO
+======================================== */
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.summary-item {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 54px;
+    padding: 12px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 7px;
+
+    background: #fff;
+
+    font-size: 0.9rem;
+}
+
+.summary-item strong {
+    white-space: nowrap;
+}
+
+.summary-total {
+
+    grid-column: 1 / -1;
+
+    border-color: #b9d8b7;
+    background: var(--total-bg);
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+.page-footer {
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 12px;
+    padding: 4px 2px;
+
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+
+/* ========================================
+   TABLETS
+======================================== */
+
+@media (max-width: 760px) {
+
+    body {
+        padding: 22px 14px;
+    }
+
+    .ledger-section,
+    .closing-section,
+    .summary-section {
+        padding: 17px;
+    }
+
+    .ledger {
+        font-size: 0.82rem;
+    }
+
+    .ledger th,
+    .ledger td {
+        padding: 10px 7px;
+    }
+
+}
+
+
+/* ========================================
+   TELÉFONOS
+======================================== */
+
+@media (max-width: 560px) {
+
+    body {
+        padding: 14px 10px 24px;
+    }
+
+    .page-header {
+
+        align-items: flex-start;
+
+        gap: 12px;
+        margin-bottom: 17px;
+    }
+
+    .eyebrow {
+        font-size: 0.65rem;
+    }
+
+    h1 {
+        font-size: 1.45rem;
+    }
+
+    .subtitle {
+
+        max-width: 220px;
+
+        font-size: 0.8rem;
+    }
+
+    .period {
+
+        min-width: 82px;
+
+        padding: 9px 10px;
+    }
+
+    .period-label {
+        font-size: 0.59rem;
+    }
+
+    .period-value {
+        font-size: 0.95rem;
+    }
+
+    .ledger-section,
+    .closing-section,
+    .summary-section {
+
+        margin-bottom: 13px;
+        padding: 14px 12px;
+
+        border-radius: 10px;
+    }
+
+    .section-heading {
+        margin-bottom: 12px;
+    }
+
+    .section-heading h2,
+    .closing-section h2,
+    .summary-section h2 {
+
+        font-size: 0.98rem;
+    }
+
+    .section-heading p {
+        font-size: 0.77rem;
+    }
+
+    /* Tabla adaptable mediante desplazamiento */
+
+    .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ledger {
+        min-width: 650px;
+        font-size: 0.8rem;
+    }
+
+    .ledger th,
+    .ledger td {
+        padding: 10px 7px;
+    }
+
+    .closing-line {
+
+        padding: 12px;
+
+        font-size: 0.88rem;
+    }
+
+    .summary-grid {
+
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .summary-item {
+
+        min-height: 48px;
+        padding: 10px 11px;
+
+        font-size: 0.84rem;
+    }
+
+    .summary-total {
+        grid-column: auto;
+    }
+
+    .page-footer {
+
+        flex-direction: column;
+
+        gap: 3px;
+        padding: 3px 2px;
+
+        font-size: 0.7rem;
+    }
+
+}
+
+
+/* ========================================
+   TELÉFONOS MUY PEQUEÑOS
+======================================== */
+
+@media (max-width: 350px) {
+
+    .page-header {
+        flex-direction: column;
+    }
+
+    .period {
+
+        width: 100%;
+        text-align: left;
+    }
+
+    .period-label,
+    .period-value {
+        display: inline;
+    }
+
+    .period-label {
+        margin-right: 8px;
+    }
+
+}
+
+/* ========================================
+   ANIMACIÓN DE CARGA DE LA PÁGINA
+======================================== */
+
+/* Animación general de aparición */
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Encabezado */
+
+.page-header {
+    animation: pageFadeIn 0.7s ease-out both;
+}
+
+
+/* Tabla de movimientos */
+
+.ledger-section {
+    animation: pageFadeIn 0.8s ease-out 0.12s both;
+}
+
+
+/* Cierre mensual */
+
+.closing-section {
+    animation: pageFadeIn 0.8s ease-out 0.24s both;
+}
+
+
+/* Resumen financiero */
+
+.summary-section {
+    animation: pageFadeIn 0.8s ease-out 0.36s both;
+}
+
+
+/* Pie de página */
+
+.page-footer {
+    animation: pageFadeIn 0.8s ease-out 0.48s both;
+}
+
+
+/* Respetar preferencias de movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .page-header,
+    .ledger-section,
+    .closing-section,
+    .summary-section,
+    .page-footer {
+
+        animation: none;
+    }
+
+}
+
+/* ========================================
+   ENCABEZADO CENTRADO CON BOTÓN DE REGRESO
+======================================== */
+
+.page-header {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* INFORMACIÓN CENTRAL */
+
+.header-info {
+    text-align: center;
+    grid-column: 2;
+}
+
+.header-info .eyebrow {
+    margin-bottom: 7px;
+}
+
+.header-info h1 {
+    margin-bottom: 5px;
+}
+
+.header-info .subtitle {
+    margin-bottom: 0;
+}
+
+
+/* BOTÓN DE REGRESO */
+
+.back-button {
+    grid-column: 1;
+    justify-self: start;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+
+    background: var(--surface);
+    color: var(--accent);
+
+    font-size: 28px;
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.back-button:hover {
+    background: var(--header-bg);
+    border-color: var(--accent);
+    transform: translateX(-3px);
+}
+
+.back-button:active {
+    transform: scale(0.94);
+}
+
+.back-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* PERÍODO A LA DERECHA */
+
+.page-header .period {
+    grid-column: 3;
+    justify-self: end;
+}
+
+
+/* ========================================
+   ADAPTACIÓN PARA TELÉFONOS
+======================================== */
+
+@media (max-width: 560px) {
+
+    .page-header {
+        display: grid;
+
+        grid-template-columns: 38px minmax(0, 1fr) 75px;
+
+        align-items: center;
+        gap: 5px;
+    }
+
+    .header-info {
+        grid-column: 2;
+        min-width: 0;
+        text-align: center;
+    }
+
+    .header-info .eyebrow {
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+    }
+
+    .header-info h1 {
+        font-size: 1.15rem;
+    }
+
+    .header-info .subtitle {
+        font-size: 0.68rem;
+        max-width: none;
+    }
+
+    .back-button {
+        width: 36px;
+        height: 36px;
+
+        font-size: 23px;
+        border-radius: 9px;
+    }
+
+    .page-header .period {
+        grid-column: 3;
+
+        min-width: 0;
+        width: 75px;
+
+        padding: 8px 5px;
+
+        text-align: center;
+    }
+
+    .period-label {
+        font-size: 0.55rem;
+    }
+
+    .period-value {
+        font-size: 0.85rem;
+    }
+
+}
+
+
+/* TELÉFONOS MUY PEQUEÑOS */
+
+@media (max-width: 350px) {
+
+    .page-header {
+        grid-template-columns: 32px minmax(0, 1fr) 65px;
+    }
+
+    .back-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-info h1 {
+        font-size: 1rem;
+    }
+
+    .header-info .subtitle {
+        font-size: 0.61rem;
+    }
+
+    .page-header .period {
+        width: 65px;
+    }
+
+}
+
+/* ========================================
+   CENTRADO DE ENCABEZADOS
+======================================== */
+
+/* Movimientos del mes */
+.section-heading {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.section-heading > div {
+    width: 100%;
+    text-align: center;
+}
+
+/* Cierre del mes */
+.closing-section > h2 {
+    text-align: center;
+}
+
+/* Resumen financiero */
+.summary-section > h2 {
+    text-align: center;
+}
+
+/* Centrar encabezados de la tabla */
+.ledger thead th {
+    text-align: center !important;
+}
+
