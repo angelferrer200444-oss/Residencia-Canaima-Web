@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="search.css">
 
 </head>
 
@@ -62,10 +63,20 @@
         <section class="ledger-section">
 
             <div class="section-heading">
-                <div>
-                    <h2>Movimientos del mes</h2>
+                <h2>Movimientos del mes</h2>
+
+                <div class="search-container">
+                    <input
+                        type="search"
+                        id="search-movements"
+                        placeholder="Buscar movimiento..."
+                        aria-label="Buscar por descripción"
+                        autocomplete="off"
+                    >
+                    <span class="search-icon" aria-hidden="true">⌕</span>
                 </div>
             </div>
+
 
             <div class="table-wrap">
 
@@ -160,6 +171,7 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="search.js"></script>
 
 </body>
 </html>

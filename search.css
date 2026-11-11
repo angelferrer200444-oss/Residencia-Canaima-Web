@@ -1,0 +1,101 @@
+/* ========================================
+   ENCABEZADO Y BUSCADOR DE MOVIMIENTOS
+======================================== */
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.section-heading h2 {
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Contenedor del buscador */
+
+.search-container {
+    position: relative;
+    width: min(100%, 320px);
+    flex: 0 1 320px;
+}
+
+/* Campo de búsqueda */
+
+.search-container input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 42px 11px 15px;
+
+    font-family: inherit;
+    font-size: 14px;
+    color: #30343b;
+
+    background: #ffffff;
+    border: 1px solid #d9dce3;
+    border-radius: 9px;
+
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.search-container input::placeholder {
+    color: #a0a5af;
+}
+
+.search-container input:focus {
+    border-color: #8795ad;
+    box-shadow: 0 0 0 3px rgba(135, 149, 173, 0.15);
+}
+
+/* Icono de búsqueda */
+
+.search-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 23px;
+    color: #89909c;
+
+    pointer-events: none;
+}
+
+/* Mensaje sin resultados */
+
+.search-empty-row td {
+    padding: 25px 12px;
+    text-align: center;
+    color: #9298a3;
+    font-size: 14px;
+}
+
+/* ========================================
+   ADAPTACIÓN A MÓVILES
+======================================== */
+
+@media (max-width: 620px) {
+
+    .section-heading {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .section-heading h2 {
+        width: 100%;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: none;
+        flex: 1 1 100%;
+    }
+
+}
