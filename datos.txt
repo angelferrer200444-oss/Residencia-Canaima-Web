@@ -10,7 +10,7 @@
 14;1 Quincena Vigilancia 1 Porton;0;32.000,00;60.959,25;
 14;1 Quincena Limpieza;0;26.890,00;34.069,25;
 15;1 Quincena Vigilancia 2 Porton;0;27.768,00;6.301,25;
-16;Pago ConserjerÃ­a Edif. 3;28.000,00;0;34.301,25;
+16;Pago Conserjerí­a Edif. 3;28.000,00;0;34.301,25;
 17;Compra cemento/arena/reparacion de Garita y carpinteria entrada principal;0;8.000,00;26.301,25;
 17;Compra cemento y arena completar;0,00;2.000,00;24.301,25;
 17;Pago traslado materiales;0,00;5.000,00;19.301,25;
@@ -24,9 +24,10 @@
 27;Aporte Edif.6 / 2 Quincena;7.350,00;0;47.108,25;
 27;Aporte Edif.5 / 2 Quincena;7.350,00;0;54.458,25;
 28;Pago Salon de Fiesta;21.000,00;0;75.458,25;417,35
-28;Pago ConserjerÃ­a 6;29.215,00;0;104.673,25;417,35
+28;Pago Conserjerí­a 6;29.215,00;0;104.673,25;417,35
 28;2 Quincena Vigilancia 1 Porton;0;33.600,00;71.073,25;
 28;2 Quincena Vigilancia 2 Porton;0;33.600,00;37.473,25;
 28;2 Quincena Limpieza;0;31.500,00;5.973,25;
-
+CIERRE;Febrero;5.973,25
+RESUMEN;215.469,00;211.347,00;4.122,00;1.851,25;5.973,25
 

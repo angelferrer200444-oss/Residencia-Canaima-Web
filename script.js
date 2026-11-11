@@ -74,10 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const datos = linea.split(";").map(dato => dato.trim());
 
-            if (datos.length !== 6) {
-                console.warn("Línea ignorada:", linea, "Campos:", datos.length);
+            // Ignorar registros especiales
+            if (datos[0] === "CIERRE" || datos[0] === "RESUMEN") {
                 return;
             }
+
+            if (datos.length !== 6) {
+                console.warn("Línea ignorada:", linea);
+                return;
+            }
+
 
             const [fecha, descripcion, ingreso, egreso, saldo, tasa] = datos;
 
@@ -114,5 +120,70 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     cargarMovimientos();
+
+    // ========================================
+    // CARGAR CIERRE Y RESUMEN FINANCIERO
+    // ========================================
+
+    async function cargarResumenFinanciero() {
+
+        try {
+
+            const respuesta = await fetch("./datos.txt");
+
+            if (!respuesta.ok) {
+                throw new Error("No se pudo cargar el resumen.");
+            }
+
+            const contenido = await respuesta.text();
+
+            const lineas = contenido
+                .replace(/^\uFEFF/, "")
+                .split(/\r?\n/)
+                .filter(linea => linea.trim() !== "");
+
+            const cierre = document.querySelector(".closing-line strong");
+            const resumen = document.querySelectorAll(".summary-item strong");
+
+            lineas.forEach(linea => {
+
+                const datos = linea.split(";").map(dato => dato.trim());
+
+                // SALDO DE CIERRE
+                if (datos[0] === "CIERRE" && datos.length >= 3) {
+
+                    if (cierre) {
+                        cierre.textContent = datos[2];
+                    }
+
+                }
+
+                // RESUMEN FINANCIERO
+                if (datos[0] === "RESUMEN" && datos.length >= 6) {
+
+                    if (resumen.length >= 5) {
+
+                        resumen[0].textContent = datos[1];
+                        resumen[1].textContent = datos[2];
+                        resumen[2].textContent = datos[3];
+                        resumen[3].textContent = datos[4];
+                        resumen[4].textContent = datos[5];
+
+                    }
+
+                }
+
+            });
+
+        } catch (error) {
+
+            console.error("Error al cargar el resumen financiero:", error);
+
+        }
+
+    }
+
+    // Ejecutar función
+    cargarResumenFinanciero();
 
 });
