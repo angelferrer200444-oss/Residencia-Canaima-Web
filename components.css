@@ -133,6 +133,7 @@ main > section:not(.hero)::after {
     transition: background .25s ease, box-shadow .25s ease, transform .25s ease, opacity .4s ease, visibility .4s ease;
     width: 50px;
     z-index: 5;
+    border: 2px solid #ffffff;
 }
 
 .scroll-hint.is-hidden {
@@ -326,4 +327,71 @@ blockquote cite {
     background: #477956;
     box-shadow: 0 7px 20px rgba(0, 0, 0, .3);
     transform: translateY(-4px);
+}
+
+.scroll-hint {
+    isolation: isolate;
+    border: none;
+}
+
+.scroll-hint::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #ffffff 0deg 100deg,
+        #111111 100deg 180deg,
+        #ffffff 180deg 280deg,
+        #111111 280deg 360deg
+    );
+    animation: ring-spin 2.5s linear infinite;
+    z-index: -1;
+}
+
+.scroll-hint::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: #315b42;
+    z-index: -1;
+}
+
+@keyframes ring-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#hero-title span {
+    display: inline-block;
+}
+
+#hero-title:hover span,
+#hero-title:active span {
+    animation: letter-jump .45s ease;
+}
+
+#hero-title:hover span:nth-child(2n),
+#hero-title:active span:nth-child(2n) {
+    animation-delay: .05s;
+}
+
+#hero-title:hover span:nth-child(3n),
+#hero-title:active span:nth-child(3n) {
+    animation-delay: .1s;
+}
+
+@keyframes letter-jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    45% {
+        transform: translateY(-13px);
+    }
+    70% {
+        transform: translateY(-4px);
+    }
 }

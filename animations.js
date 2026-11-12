@@ -48,6 +48,25 @@ if (scrollHint) {
     });
 }
 
+const heroTitle = document.querySelector("#hero-title");
+
+if (heroTitle) {
+    const originalText = heroTitle.textContent;
+
+    heroTitle.setAttribute("aria-label", originalText);
+    heroTitle.innerHTML = "";
+
+    [...originalText].forEach((character) => {
+        const letter = document.createElement("span");
+
+        letter.textContent = character === " " ? "\u00A0" : character;
+        letter.setAttribute("aria-hidden", "true");
+
+        heroTitle.appendChild(letter);
+    });
+}
+
+
 window.addEventListener("scroll", updateScrollHint, { passive: true });
 window.addEventListener("resize", updateScrollHint);
 

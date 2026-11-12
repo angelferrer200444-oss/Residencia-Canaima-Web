@@ -47,3 +47,9 @@
 .philosophy::after {
     display: none;
 }
+
+.philosophy .button:hover {
+    background: #477956;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, .3);
+    transform: translateY(-4px);
+}
