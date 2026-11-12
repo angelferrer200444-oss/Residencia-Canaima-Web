@@ -42,6 +42,12 @@
         width: 65vw;
     }
 
+    #hero-title {
+        font-size: clamp(30px, 8vw, 52px);
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+    }
+
     .philosophy {
         padding-top: 65px;
     }
@@ -73,3 +79,4 @@
         right: 20px;
     }
 }
+
