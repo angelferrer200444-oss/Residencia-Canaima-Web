@@ -116,7 +116,7 @@ main > section:not(.hero)::after {
 
 .scroll-hint {
     align-items: center;
-    animation: hint-drift 3.8s ease-in-out infinite;
+    animation: hint-shake var(--shake-duration, 1.5s) ease-in-out infinite;
     background: #315b42;
     border: 0;
     border-radius: 50%;
@@ -141,27 +141,16 @@ main > section:not(.hero)::after {
     visibility: hidden;
 }
 
-@keyframes hint-drift {
-    0%, 62%, 100% {
+@keyframes hint-shake {
+    0%, 100% {
         transform: translateY(0);
     }
 
-    68% {
-        transform: translateY(2px);
-    }
-
-    74% {
-        transform: translateY(-2px);
-    }
-
-    80% {
-        transform: translateY(1px);
-    }
-
-    86% {
-        transform: translateY(0);
+    50% {
+        transform: translateY(calc(var(--shake-intensity, 12px) * -1));
     }
 }
+
 
 .section-kicker {
     color: var(--gold);

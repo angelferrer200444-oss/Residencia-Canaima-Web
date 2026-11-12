@@ -2,8 +2,23 @@ const scrollHint = document.querySelector(".scroll-hint");
 const revealSections = document.querySelectorAll(".reveal-section");
 
 const updateScrollHint = () => {
-    const reachedBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
-    scrollHint.classList.toggle("is-hidden", reachedBottom);
+    if (!scrollHint) return;
+
+    const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollableHeight > 0
+        ? Math.min(window.scrollY / scrollableHeight, 1)
+        : 0;
+
+    const intensity = 12 * (1 - progress);
+    const duration = 1.2 + (progress * 1.8);
+
+
+    scrollHint.style.setProperty("--shake-intensity", `${intensity}px`);
+    scrollHint.style.setProperty("--shake-duration", `${duration}s`);
+
+    scrollHint.classList.toggle("is-hidden", progress >= 0.98);
 };
 
 revealSections.forEach((section) => {
@@ -24,13 +39,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealSections.forEach((section) => revealObserver.observe(section));
 
-scrollHint.addEventListener("click", () => {
-    window.scrollBy({
-        top: Math.max(window.innerHeight * 0.72, 420),
-        behavior: "smooth"
+if (scrollHint) {
+    scrollHint.addEventListener("click", () => {
+        window.scrollBy({
+            top: Math.max(window.innerHeight * 0.72, 420),
+            behavior: "smooth"
+        });
     });
-});
+}
 
 window.addEventListener("scroll", updateScrollHint, { passive: true });
 window.addEventListener("resize", updateScrollHint);
+
 updateScrollHint();

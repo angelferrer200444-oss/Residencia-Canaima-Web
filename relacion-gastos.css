@@ -1,0 +1,49 @@
+/* RELACIÓN DE GASTOS */
+.philosophy {
+    align-items: center;
+    background:
+        linear-gradient(
+            to bottom,
+            #ffffff 0%,
+            rgba(255, 255, 255, .75) 8%,
+            rgba(0, 0, 0, .50) 30%,
+            rgba(0, 0, 0, .50) 100%
+        ),
+        url("imagenes/gatos.jpg") center center / cover;
+
+    display: flex;
+    justify-content: flex-end;
+    min-height: 480px;
+    padding: 80px 8%;
+    text-align: right;
+}
+
+.philosophy .section-inner {
+    margin: 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+.philosophy h2 {
+    color: var(--white);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.1;
+    margin: 0 0 30px;
+}
+
+.philosophy .button {
+    display: inline-block;
+    text-decoration: none;
+    transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.philosophy .button:hover {
+    background: #477956;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+    transform: translateY(-3px);
+}
+
+.philosophy::before,
+.philosophy::after {
+    display: none;
+}
