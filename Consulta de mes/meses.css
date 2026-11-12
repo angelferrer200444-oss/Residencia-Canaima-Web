@@ -1,0 +1,270 @@
+:root {
+    --green: #315b42;
+    --green-hover: #477956;
+    --dark: #171b18;
+    --gray: #777d78;
+    --light: #f5f6f3;
+    --white: #ffffff;
+    --border: #e4e8e2;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--light);
+    color: var(--dark);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+.months-page {
+    margin: 0 auto;
+    max-width: 1250px;
+    padding: 85px 7% 35px;
+}
+
+/* ENCABEZADO */
+
+.page-header {
+    animation: appear-down .8s ease both;
+    margin-bottom: 55px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.page-header h1 {
+    font-size: clamp(34px, 5vw, 55px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 15px;
+}
+
+.title-line {
+    background: var(--green);
+    border-radius: 10px;
+    height: 4px;
+    margin: 25px auto 0;
+    width: 65px;
+}
+
+/* CUADRÍCULA */
+
+.months-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* TARJETAS */
+
+.month-card {
+    animation: appear-up .65s ease both;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--dark);
+    min-height: 155px;
+    overflow: hidden;
+    padding: 25px;
+    position: relative;
+    text-decoration: none;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.month-card:nth-child(1) { animation-delay: .05s; }
+.month-card:nth-child(2) { animation-delay: .10s; }
+.month-card:nth-child(3) { animation-delay: .15s; }
+.month-card:nth-child(4) { animation-delay: .20s; }
+.month-card:nth-child(5) { animation-delay: .25s; }
+.month-card:nth-child(6) { animation-delay: .30s; }
+.month-card:nth-child(7) { animation-delay: .35s; }
+.month-card:nth-child(8) { animation-delay: .40s; }
+.month-card:nth-child(9) { animation-delay: .45s; }
+.month-card:nth-child(10) { animation-delay: .50s; }
+.month-card:nth-child(11) { animation-delay: .55s; }
+.month-card:nth-child(12) { animation-delay: .60s; }
+
+.month-card::before {
+    background: var(--green);
+    content: "";
+    height: 4px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s ease;
+    width: 100%;
+}
+
+.month-card:hover {
+    border-color: transparent;
+    box-shadow: 0 12px 30px rgba(31, 61, 42, .12);
+    transform: translateY(-7px);
+}
+
+.month-card:hover::before {
+    transform: scaleX(1);
+}
+
+.month-number {
+    color: #a3b2a5;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.month-card h2 {
+    font-size: 23px;
+    font-weight: 600;
+    margin-top: 27px;
+    transition: color .3s ease;
+}
+
+.month-card:hover h2 {
+    color: var(--green);
+}
+
+.month-arrow {
+    color: var(--green);
+    font-size: 22px;
+    opacity: 0;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    transform: translate(-5px, 5px);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+.month-card:hover .month-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* PIE DE PÁGINA */
+
+.page-footer {
+    border-top: 1px solid var(--border);
+    color: var(--gray);
+    font-size: 12px;
+    margin-top: 65px;
+    padding-top: 25px;
+    text-align: center;
+}
+
+/* ANIMACIONES */
+
+@keyframes appear-up {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+    .months-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .months-page {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+/* MÓVIL */
+
+@media (max-width: 520px) {
+    .months-page {
+        padding: 55px 20px 25px;
+    }
+
+    .page-header {
+        margin-bottom: 35px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .months-grid {
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .month-card {
+        min-height: 125px;
+        padding: 18px;
+    }
+
+    .month-card h2 {
+        font-size: 18px;
+        margin-top: 22px;
+    }
+
+    .month-arrow {
+        font-size: 17px;
+        right: 15px;
+        top: 15px;
+    }
+
+    .page-footer {
+        margin-top: 40px;
+    }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
