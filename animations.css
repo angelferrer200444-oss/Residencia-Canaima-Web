@@ -1,0 +1,40 @@
+.reveal-section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease var(--reveal-delay, 0ms), transform .7s ease var(--reveal-delay, 0ms);
+}
+
+.reveal-section.is-visible .reveal-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal-item,
+    .reveal-section,
+    .reveal-section.is-visible .reveal-item,
+    .reveal-section.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .scroll-hint {
+        animation: none;
+    }
+}

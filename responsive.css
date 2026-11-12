@@ -1,0 +1,75 @@
+@media (max-width: 900px) {
+    .main-nav {
+        gap: 10px;
+    }
+
+    .site-header {
+        padding: 0 3%;
+    }
+
+    .hero {
+        height: 550px;
+    }
+}
+
+@media (max-width: 700px) {
+    .site-header {
+        height: auto;
+        min-height: 90px;
+        padding: 20px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .header-socials {
+        margin-left: auto;
+    }
+
+    .hero {
+        height: 510px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+        line-height: 1.4;
+        max-width: 330px;
+    }
+
+    .brush-line {
+        margin-top: 45px;
+        width: 65vw;
+    }
+
+    .philosophy {
+        padding-top: 65px;
+    }
+
+    .philosophy p {
+        font-size: 15px;
+    }
+
+    .desktop-break {
+        display: none;
+    }
+
+    .tour-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-grid,
+    .testimonial-grid,
+    .benefits-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-layout {
+        gap: 45px;
+    }
+
+    .scroll-hint {
+        bottom: 20px;
+        right: 20px;
+    }
+}

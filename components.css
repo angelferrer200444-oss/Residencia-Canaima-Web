@@ -1,0 +1,324 @@
+.brush-line {
+    background: var(--white);
+    height: 4px;
+    margin: 67px auto 36px;
+    max-width: 450px;
+    transform: rotate(.5deg);
+    width: 36vw;
+}
+
+main > section:not(.hero) {
+    position: relative;
+}
+
+main > section:not(.hero)::before,
+main > section:not(.hero)::after {
+    background: inherit;
+    content: "";
+    height: 18px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+main > section:not(.hero)::before {
+    clip-path: polygon(0 100%, 3% 15%, 6% 75%, 10% 5%, 14% 70%, 18% 18%, 23% 82%, 28% 8%, 33% 72%, 38% 0, 43% 78%, 48% 10%, 53% 70%, 58% 3%, 63% 82%, 68% 12%, 73% 72%, 78% 0, 83% 75%, 88% 15%, 93% 80%, 97% 5%, 100% 70%, 100% 100%);
+    top: -17px;
+}
+
+main > section:not(.hero)::after {
+    clip-path: polygon(0 0, 3% 85%, 6% 25%, 10% 95%, 14% 30%, 18% 82%, 23% 18%, 28% 92%, 33% 28%, 38% 100%, 43% 22%, 48% 90%, 53% 30%, 58% 97%, 63% 18%, 68% 88%, 73% 28%, 78% 100%, 83% 25%, 88% 85%, 93% 20%, 97% 95%, 100% 30%, 100% 0);
+    bottom: -17px;
+}
+
+.hero-description {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 auto 57px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.button {
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 157px;
+    padding: 18px 26px;
+}
+
+.button-primary {
+    background: var(--gold);
+}
+
+.button-outline {
+    border: 1px solid var(--gold);
+}
+
+.hero-brush,
+.tours-brush {
+    background: var(--white);
+    bottom: -1px;
+    clip-path: polygon(0 74%, 3% 82%, 6% 75%, 10% 86%, 15% 80%, 19% 91%, 25% 80%, 31% 94%, 38% 82%, 45% 96%, 52% 84%, 59% 95%, 66% 81%, 72% 91%, 79% 78%, 87% 90%, 94% 80%, 100% 88%, 100% 100%, 0 100%);
+    height: 120px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.follow {
+    align-items: center;
+    display: flex;
+    gap: 13px;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.follow strong {
+    font-family: "Roboto Slab", serif;
+    font-size: 19px;
+}
+
+.follow a {
+    align-items: center;
+    background: var(--gold);
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    font-size: 14px;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.tours-brush {
+    background: var(--black);
+    bottom: auto;
+    clip-path: polygon(0 100%, 4% 72%, 9% 92%, 14% 67%, 20% 89%, 26% 64%, 32% 86%, 39% 69%, 47% 91%, 55% 65%, 62% 89%, 69% 71%, 77% 94%, 84% 67%, 91% 87%, 97% 70%, 100% 90%, 100% 100%, 0 100%);
+    height: 90px;
+    top: -70px;
+}
+
+.scroll-hint {
+    align-items: center;
+    animation: hint-drift 3.8s ease-in-out infinite;
+    background: var(--gold);
+    border: 0;
+    border-radius: 50%;
+    bottom: 28px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, .22);
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    font-size: 19px;
+    height: 50px;
+    justify-content: center;
+    position: fixed;
+    right: 30px;
+    transition: opacity .4s ease, visibility .4s ease;
+    width: 50px;
+    z-index: 5;
+}
+
+.scroll-hint.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+@keyframes hint-drift {
+    0%, 62%, 100% {
+        transform: translateY(0);
+    }
+
+    68% {
+        transform: translateY(2px);
+    }
+
+    74% {
+        transform: translateY(-2px);
+    }
+
+    80% {
+        transform: translateY(1px);
+    }
+
+    86% {
+        transform: translateY(0);
+    }
+}
+
+.section-kicker {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0 0 14px;
+    text-transform: uppercase;
+}
+
+main > section:not(.hero) {
+    overflow: hidden;
+}
+
+.section-cover-image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+main > section:not(.hero) .section-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.adventure-types {
+    min-height: 525px;
+    padding: 105px 20px 120px;
+    text-align: center;
+}
+
+.adventure-types h2,
+.benefits h2,
+.testimonials h2,
+.contact h2 {
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1.1;
+    margin: 0 0 42px;
+}
+
+.experience-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.experience-card {
+    border: 1px solid #e8e5df;
+    padding: 38px 28px 32px;
+}
+
+.experience-card i {
+    color: var(--gold);
+    font-size: 34px;
+}
+
+.experience-card h3 {
+    font-family: "Roboto Slab", serif;
+    font-size: 22px;
+    margin: 23px 0 12px;
+}
+
+.experience-card p,
+.benefits-intro,
+.contact-inner > p:not(.section-kicker) {
+    color: var(--copy);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.benefits {
+    background: #f5f1e9;
+    min-height: 380px;
+    padding: 110px 20px;
+}
+
+.benefits-layout {
+    align-items: center;
+    display: grid;
+    gap: 90px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.benefits h2 {
+    margin-bottom: 22px;
+}
+
+.benefit-list {
+    display: grid;
+    gap: 24px;
+}
+
+.benefit-item {
+    align-items: flex-start;
+    display: flex;
+    gap: 16px;
+    line-height: 1.55;
+}
+
+.benefit-item i {
+    align-items: center;
+    background: var(--gold);
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    flex: 0 0 27px;
+    font-size: 13px;
+    height: 27px;
+    justify-content: center;
+    margin-top: 2px;
+    width: 27px;
+}
+
+.benefit-item strong {
+    display: block;
+    font-family: "Roboto Slab", serif;
+    margin-bottom: 3px;
+}
+
+.testimonials {
+    min-height: 455px;
+    padding: 110px 20px 125px;
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+blockquote {
+    background: var(--black);
+    color: var(--white);
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 40px 35px;
+}
+
+blockquote cite {
+    color: var(--gold);
+    display: block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    margin-top: 24px;
+}
+
+.contact {
+    background: var(--black);
+    color: var(--white);
+    min-height: 395px;
+    padding: 110px 20px 125px;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 18px;
+}
+
+.contact-inner > p:not(.section-kicker) {
+    color: #d5d5d5;
+    margin: 0 auto 34px;
+    max-width: 600px;
+}
