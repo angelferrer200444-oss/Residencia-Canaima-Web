@@ -160,3 +160,17 @@ h1 {
 .tour-card:hover img {
     transform: scale(1.04);
 }
+
+.adventure-types {
+    background:
+        linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .55)),
+        url("imagenes/acta-constitutiva.jpg") center center / cover;
+    color: var(--white);
+    min-height: 500px;
+    padding: 105px 20px 80px;
+    position: relative;
+}
+
+.adventure-types h2 {
+    text-align: center;
+}
