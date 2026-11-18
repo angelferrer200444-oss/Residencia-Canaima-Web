@@ -1,0 +1,222 @@
+/* ========================================
+   RESIDENCIA CANAIMA - MODO NOCTURNO
+======================================== */
+
+/* PALETA OSCURA */
+[data-theme="dark"] {
+    /* Variables generales (index.html) */
+    --page-bg: #121714;
+    --surface: #1a221d;
+    --ink: #e5ece6;
+    --muted: #95a79a;
+    --line: #2b392f;
+    --header-bg: #223226;
+    --header-ink: #85c988;
+    --accent: #5ea364;
+    --total-bg: #273b2c;
+    --shadow: 0 5px 22px rgba(0, 0, 0, 0.35);
+
+    /* Variables generales (consultadelmes.html) */
+    --green: #5ea364;
+    --green-hover: #75bd7b;
+    --dark: #e5ece6;
+    --gray: #95a79a;
+    --light: #121714;
+    --white: #1a221d;
+    --border: #2b392f;
+}
+
+/* ========================================
+   CONSULTA DE MES - TABLA Y COMPONENTES
+======================================== */
+
+/* Bordes y filas de la tabla */
+[data-theme="dark"] .ledger th,
+[data-theme="dark"] .ledger td {
+    border-color: #2b392f;
+}
+
+[data-theme="dark"] .ledger tbody tr:not(.empty-row):hover {
+    background: #202b23;
+}
+
+/* Resumen financiero */
+[data-theme="dark"] .summary-item {
+    background: #1a221d;
+    border-color: #2b392f;
+}
+
+[data-theme="dark"] .summary-item strong {
+    color: #85c988;
+}
+
+[data-theme="dark"] .summary-total {
+    background: #273b2c;
+    border-color: #3d5642;
+}
+
+/* Buscador de movimientos */
+[data-theme="dark"] .search-container input {
+    background: #1a221d;
+    border-color: #2b392f;
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .search-container input::placeholder {
+    color: #68796d;
+}
+
+[data-theme="dark"] .search-container input:focus {
+    border-color: #5ea364;
+    box-shadow: 0 0 0 3px rgba(94, 163, 100, 0.2);
+}
+
+[data-theme="dark"] .search-icon {
+    color: #68796d;
+}
+
+[data-theme="dark"] .search-empty-row td {
+    color: #95a79a;
+}
+
+/* Botón y menú de ordenamiento */
+[data-theme="dark"] .ledger-section .sort-button {
+    background: #1a221d;
+    border-color: #2b392f;
+}
+
+[data-theme="dark"] .ledger-section .sort-button span {
+    background: #95a79a;
+}
+
+[data-theme="dark"] .ledger-section .sort-button:hover {
+    background: #223226;
+    border-color: #3d5642;
+}
+
+[data-theme="dark"] .ledger-section .sort-menu {
+    background: #1e2820;
+    border-color: #2b392f;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .ledger-section .sort-option {
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .ledger-section .sort-option:hover {
+    background: #27382c;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .ledger-section .sort-option:active {
+    background: #2f4335;
+}
+
+/* Botón de regreso */
+[data-theme="dark"] .back-button {
+    background: #1a221d;
+    border-color: #2b392f;
+    color: #85c988;
+}
+
+[data-theme="dark"] .back-button:hover {
+    background: #223226;
+    border-color: #5ea364;
+}
+
+/* ========================================
+   CONSULTA DE GASTOS - CUADRÍCULA DE MESES
+======================================== */
+
+[data-theme="dark"] .month-card {
+    background: #1a221d;
+    border-color: #2b392f;
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .month-card:hover {
+    border-color: #5ea364;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .month-number {
+    color: #637667;
+}
+
+[data-theme="dark"] .month-arrow {
+    color: #5ea364;
+}
+
+[data-theme="dark"] .page-footer {
+    border-color: #2b392f;
+    color: #95a79a;
+}
+
+/* ========================================
+   BOTÓN FLOTANTE (SOL / LUNA)
+======================================== */
+
+.theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+    border: 1px solid #d5e3d7;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+
+    color: #26372c;
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 9999;
+    outline: none;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:active {
+    transform: scale(0.92);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: #1a221d;
+    border-color: #2b392f;
+    color: #ffd166;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: #233227;
+    border-color: #5ea364;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+}
+
+/* Teléfonos móviles */
+@media (max-width: 560px) {
+    .theme-toggle {
+        bottom: 18px;
+        right: 18px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+}
