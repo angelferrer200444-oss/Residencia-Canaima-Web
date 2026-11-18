@@ -1,26 +1,12 @@
 /* ========================================
-   AJUSTES RESPONSIVE DEL ENCABEZADO
+   AJUSTES RESPONSIVE DE TABLA
 ======================================== */
 
-/* Escritorios pequeños y pantallas grandes */
-@media (min-width: 621px) {
-
-    .section-heading h2 {
-        transform: translateX(clamp(-80px, -5vw, -35px));
-    }
-
-}
-
-/* En móvil el título conserva su centrado */
 @media (max-width: 620px) {
 
     .ledger th:first-child {
         min-width: 48px;
         white-space: nowrap;
-    }
-
-    .section-heading h2 {
-        transform: none;
     }
 
 }

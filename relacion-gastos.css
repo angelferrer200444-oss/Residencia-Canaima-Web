@@ -4,8 +4,7 @@
     background:
         linear-gradient(
             to bottom,
-            
-            rgba(0, 0, 0, .50) 30%,
+            rgba(0, 0, 0, .50) 0%,
             rgba(0, 0, 0, .50) 100%
         ),
         url("imagenes/gatos.jpg") center center / cover;
@@ -21,35 +20,32 @@
     margin: 0;
     max-width: 600px;
     width: 100%;
+    text-align: center;
 }
 
 .philosophy h2 {
     color: var(--white);
-    font-size: clamp(38px, 5vw, 58px);
+    font-size: clamp(38px, 4vw, 50px);
     line-height: 1.1;
-    margin: 0 0 30px;
+    margin: 0 0 32px;
+    text-align: center;
 }
 
 .philosophy .button {
     display: inline-block;
+    margin: 0 auto;
     text-decoration: none;
     transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 
 .philosophy .button:hover {
     background: #477956;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
-    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, .3);
+    transform: translateY(-4px);
 }
 
 .philosophy::before,
 .philosophy::after {
     display: none;
-}
-
-.philosophy .button:hover {
-    background: #477956;
-    box-shadow: 0 7px 20px rgba(0, 0, 0, .3);
-    transform: translateY(-4px);
 }
 

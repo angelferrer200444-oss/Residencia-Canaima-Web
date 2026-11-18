@@ -32,18 +32,6 @@ main > section:not(.hero)::after {
     bottom: -17px;
 }
 
-.hero-description {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 auto 57px;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
 .button {
     border-radius: 30px;
     font-size: 15px;
@@ -136,35 +124,6 @@ main > section:not(.hero)::after {
     }
 }
 
-.button-outline {
-    border: 1px solid var(--gold);
-}
-
-.follow {
-    align-items: center;
-    display: flex;
-    gap: 13px;
-    justify-content: center;
-    margin-top: 48px;
-}
-
-.follow strong {
-    font-family: "Roboto Slab", serif;
-    font-size: 19px;
-}
-
-.follow a {
-    align-items: center;
-    background: var(--gold);
-    border-radius: 50%;
-    color: var(--white);
-    display: flex;
-    font-size: 14px;
-    height: 30px;
-    justify-content: center;
-    width: 30px;
-}
-
 .tours-brush {
     background: var(--black);
     bottom: auto;
@@ -212,26 +171,8 @@ main > section:not(.hero)::after {
 }
 
 
-.section-kicker {
-    color: var(--gold);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin: 0 0 14px;
-    text-transform: uppercase;
-}
-
 main > section:not(.hero) {
     overflow: hidden;
-}
-
-.section-cover-image {
-    height: 100%;
-    inset: 0;
-    object-fit: cover;
-    position: absolute;
-    width: 100%;
-    z-index: 0;
 }
 
 main > section:not(.hero) .section-inner {
@@ -254,114 +195,19 @@ main > section:not(.hero) .section-inner {
     margin: 0 0 42px;
 }
 
-.experience-grid {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.experience-card {
-    border: 1px solid #e8e5df;
-    padding: 38px 28px 32px;
-}
-
-.experience-card i {
-    color: var(--gold);
-    font-size: 34px;
-}
-
-.experience-card h3 {
-    font-family: "Roboto Slab", serif;
-    font-size: 22px;
-    margin: 23px 0 12px;
-}
-
-.experience-card p,
-.benefits-intro,
-.contact-inner > p:not(.section-kicker) {
-    color: var(--copy);
-    line-height: 1.6;
-    margin: 0;
-}
-
 .benefits {
     background: #f5f1e9;
     min-height: 380px;
     padding: 110px 20px;
-}
-
-.benefits-layout {
-    align-items: center;
-    display: grid;
-    gap: 90px;
-    grid-template-columns: 1fr 1fr;
-}
-
-.benefits h2 {
-    margin-bottom: 22px;
-}
-
-.benefit-list {
-    display: grid;
-    gap: 24px;
-}
-
-.benefit-item {
-    align-items: flex-start;
-    display: flex;
-    gap: 16px;
-    line-height: 1.55;
-}
-
-.benefit-item i {
-    align-items: center;
-    background: var(--gold);
-    border-radius: 50%;
-    color: var(--white);
-    display: flex;
-    flex: 0 0 27px;
-    font-size: 13px;
-    height: 27px;
-    justify-content: center;
-    margin-top: 2px;
-    width: 27px;
-}
-
-.benefit-item strong {
-    display: block;
-    font-family: "Roboto Slab", serif;
-    margin-bottom: 3px;
-}
-
-.testimonials {
-    min-height: 455px;
-    padding: 110px 20px 125px;
     text-align: center;
 }
 
-.testimonial-grid {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-blockquote {
+.testimonials {
     background: var(--black);
     color: var(--white);
-    font-family: "Roboto Slab", serif;
-    font-size: 20px;
-    line-height: 1.5;
-    margin: 0;
-    padding: 40px 35px;
-}
-
-blockquote cite {
-    color: var(--gold);
-    display: block;
-    font-family: "DM Sans", sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    margin-top: 24px;
+    min-height: 455px;
+    padding: 110px 20px 125px;
+    text-align: center;
 }
 
 .contact {
@@ -374,12 +220,6 @@ blockquote cite {
 
 .contact h2 {
     margin-bottom: 18px;
-}
-
-.contact-inner > p:not(.section-kicker) {
-    color: #d5d5d5;
-    margin: 0 auto 34px;
-    max-width: 600px;
 }
 
 .scroll-hint:hover {
@@ -455,26 +295,7 @@ blockquote cite {
     }
 }
 
-/* Centrar botón de Áreas comunes */
-#adventures .section-inner {
-    text-align: center;
-}
-
-#adventures .section-inner .button {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Bajar botones en todas las secciones excepto Relación de Gastos */
-.tours .section-inner .button,
-.adventure-types .section-inner .button,
-.benefits .section-inner .button,
-.testimonials .section-inner .button,
-.contact .section-inner .button {
-    display: block;
-    margin-top: 2.5rem;
-}
-
+/* Posicionamiento y espaciado de botones en las secciones */
 .section-inner h2 + .button {
     display: block;
     width: fit-content;
@@ -482,5 +303,5 @@ blockquote cite {
 }
 
 .philosophy .section-inner h2 + .button {
-    margin-top: 0;
+    margin: 0 auto;
 }

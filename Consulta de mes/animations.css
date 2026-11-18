@@ -11,7 +11,6 @@
 button,
 .period,
 .ledger-section,
-.closing-section,
 .summary-section,
 .summary-item,
 .ledger th,
@@ -49,7 +48,6 @@ button,
 ======================================== */
 
 .ledger-section:hover,
-.closing-section:hover,
 .summary-section:hover {
 
     box-shadow: 0 9px 25px rgba(48, 91, 57, 0.10);
@@ -122,18 +120,6 @@ button,
 
 
 /* ========================================
-   CIERRE MENSUAL
-======================================== */
-
-.closing-line:hover {
-
-    background: #d9eddb;
-
-    border-color: #a9cfae;
-}
-
-
-/* ========================================
    TEXTO DEL ENCABEZADO
 ======================================== */
 
@@ -172,11 +158,9 @@ button,
 @media (hover: none) {
 
     .ledger-section:hover,
-    .closing-section:hover,
     .summary-section:hover,
     .summary-item:hover,
     .period:hover,
-    .closing-line:hover,
     .header-info h1:hover {
 
         transform: none;
