@@ -1,5 +1,5 @@
 // ========================================
-// FADE-IN SINCRONIZADO DEL HERO
+// FADE-IN SINCRONIZADO DEL HERO (CON DECODE COMPLETO)
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,14 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
         hero.classList.add("is-loaded");
     };
 
-    // Si el navegador ya la tiene en caché, se activa de inmediato
-    if (imagenHero.complete) {
+    // Usar decode() para esperar a que el 100% de la imagen esté en memoria
+    if (imagenHero.decode) {
+        imagenHero.decode()
+            .then(activarFadeIn)
+            .catch(activarFadeIn);
+    } else if (imagenHero.complete) {
         activarFadeIn();
     } else {
         imagenHero.addEventListener("load", activarFadeIn);
         imagenHero.addEventListener("error", activarFadeIn);
-
-        // Tiempo límite de seguridad (máx 2.5s) para conexiones lentas
-        setTimeout(activarFadeIn, 2500);
     }
+
+    // Tiempo límite de seguridad (máximo 3s)
+    setTimeout(activarFadeIn, 3000);
 });
