@@ -1,6 +1,9 @@
 .hero {
     align-items: center;
-    background-color: var(--black);
+    background:
+        linear-gradient(rgba(0, 0, 0, .80), rgba(0, 0, 0, .40)),
+        url("imagenes/residencia.jpg") center center / cover;
+
     color: var(--white);
     display: flex;
     height: 600px;
@@ -8,25 +11,6 @@
     min-height: 500px;
     overflow: hidden;
     position: relative;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-position: center center;
-    background-size: cover;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.hero.is-loaded::before {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, .80), rgba(0, 0, 0, .40)),
-        url("imagenes/residencia.jpg");
-    opacity: 1;
 }
 
 .hero-content {
