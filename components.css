@@ -56,6 +56,86 @@ main > section:not(.hero)::after {
     background: var(--gold);
 }
 
+/* Hover base: aclara hacia blanco */
+.button-primary:hover {
+    background: #e6c34a; /* gold aclarado */
+    transform: translateY(-3px);
+}
+
+.button-primary:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.button-primary:focus-visible {
+    outline: 3px solid #a8e6c4;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   COLORES POR ID (base + hover aclarado)
+   ========================================= */
+
+/* Áreas comunes — azul */
+#btn-areas-comunes {
+    background: #2c5f8a;
+}
+#btn-areas-comunes:hover {
+    background: #5a8fb8; /* azul aclarado */
+}
+
+/* Acta constitutiva — verde */
+#btn-acta-constitutiva {
+    background: #2e7d5b;
+}
+#btn-acta-constitutiva:hover {
+    background: #5aa886; /* verde aclarado */
+}
+
+/* Normas de los trabajadores — naranja */
+#btn-normas-trabajadores {
+    background: #b5651d;
+}
+#btn-normas-trabajadores:hover {
+    background: #d98f4a; /* naranja aclarado */
+}
+
+/* Normas de Convivencia — morado */
+#btn-normas-convivencia {
+    background: #6b2c8a;
+}
+#btn-normas-convivencia:hover {
+    background: #9a5ab8; /* morado aclarado */
+}
+
+/* Canon de la Comunión — vino */
+#btn-canon-comunión {
+    background: #8a2c47;
+}
+#btn-canon-comunión:hover {
+    background: #b85a75; /* vino aclarado */
+}
+
+/* =========================================
+   RESPONSIVE / ACCESIBILIDAD
+   ========================================= */
+
+@media (max-width: 600px) {
+    .button {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+    .button-primary:hover {
+        transform: none;
+    }
+}
+
 .button-outline {
     border: 1px solid var(--gold);
 }
@@ -373,4 +453,34 @@ blockquote cite {
     70% {
         transform: translateY(-4px);
     }
+}
+
+/* Centrar botón de Áreas comunes */
+#adventures .section-inner {
+    text-align: center;
+}
+
+#adventures .section-inner .button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Bajar botones en todas las secciones excepto Relación de Gastos */
+.tours .section-inner .button,
+.adventure-types .section-inner .button,
+.benefits .section-inner .button,
+.testimonials .section-inner .button,
+.contact .section-inner .button {
+    display: block;
+    margin-top: 2.5rem;
+}
+
+.section-inner h2 + .button {
+    display: block;
+    width: fit-content;
+    margin: 2.5rem auto 0;
+}
+
+.philosophy .section-inner h2 + .button {
+    margin-top: 0;
 }
