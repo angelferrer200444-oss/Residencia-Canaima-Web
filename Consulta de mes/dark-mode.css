@@ -94,6 +94,21 @@
     border-color: #3d5642;
 }
 
+/* Estado activo en modo oscuro */
+[data-theme="dark"] .ledger-section .sort-button.is-active {
+    background: #223427;
+    border-color: #5ea364;
+}
+
+[data-theme="dark"] .ledger-section .sort-button.is-active span {
+    background: #85c988;
+}
+
+[data-theme="dark"] .ledger-section .sort-button.is-active:hover {
+    background: #293f2e;
+    border-color: #75bd7b;
+}
+
 [data-theme="dark"] .ledger-section .sort-menu {
     background: #1e2820;
     border-color: #2b392f;
@@ -113,6 +128,11 @@
     background: #2f4335;
 }
 
+[data-theme="dark"] .ledger-section .sort-option.is-selected {
+    color: #85c988;
+    background: #223427;
+}
+
 /* Botón de regreso */
 [data-theme="dark"] .back-button {
     background: #1a221d;
@@ -123,6 +143,57 @@
 [data-theme="dark"] .back-button:hover {
     background: #223226;
     border-color: #5ea364;
+}
+
+/* Selectores de período (Mes y Año con estilo idéntico a ordenamiento) */
+[data-theme="dark"] .page-header .period {
+    background: #1a221d;
+    border-color: #2b392f;
+}
+
+[data-theme="dark"] .period-select-btn {
+    background: #1a221d;
+    border-color: #2b392f;
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .period-select-btn:hover {
+    background: #223226;
+    border-color: #3d5642;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .period-select-arrow {
+    color: #68796d;
+}
+
+[data-theme="dark"] .period-select-btn[aria-expanded="true"] .period-select-arrow {
+    color: #85c988;
+}
+
+[data-theme="dark"] .period-select-menu {
+    background: #1e2820;
+    border-color: #2b392f;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    scrollbar-color: #2b392f transparent;
+}
+
+[data-theme="dark"] .period-select-option {
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .period-select-option:hover {
+    background: #27382c;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .period-select-option:active {
+    background: #2f4335;
+}
+
+[data-theme="dark"] .period-select-option.is-selected {
+    color: #85c988;
+    background: #223427;
 }
 
 /* ========================================

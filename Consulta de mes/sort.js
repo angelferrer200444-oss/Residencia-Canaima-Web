@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // Marcar el orden por defecto (fecha: más antiguo → más reciente)
+    boton.classList.add("is-active");
+    const opcionPorDefecto = menu.querySelector('.sort-option[data-sort="fecha-asc"]');
+    if (opcionPorDefecto) opcionPorDefecto.classList.add("is-selected");
+
     // ========================================
     // ABRIR Y CERRAR EL MENÚ
     // ========================================
@@ -142,6 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const tipo = opcion.dataset.sort;
 
         ordenarMovimientos(tipo);
+
+        // Marcar la opción activa
+        menu.querySelectorAll(".sort-option").forEach(o => o.classList.remove("is-selected"));
+        opcion.classList.add("is-selected");
+
+        // Resaltar el botón de ordenamiento para indicar que hay un orden activo
+        boton.classList.add("is-active");
 
         menu.hidden = true;
         boton.setAttribute("aria-expanded", "false");
