@@ -1,9 +1,6 @@
 .hero {
     align-items: center;
-    background:
-        linear-gradient(rgba(0, 0, 0, .80), rgba(0, 0, 0, .40)),
-        url("imagenes/residencia.jpg") center center / cover;
-
+    background: var(--black);
     color: var(--white);
     display: flex;
     height: 600px;
@@ -11,6 +8,12 @@
     min-height: 500px;
     overflow: hidden;
     position: relative;
+}
+
+.hero.has-image {
+    background:
+        linear-gradient(rgba(0, 0, 0, .80), rgba(0, 0, 0, .40)),
+        url("imagenes/residencia.jpg") center center / cover;
 }
 
 .hero-content {
