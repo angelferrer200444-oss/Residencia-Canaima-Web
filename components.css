@@ -60,27 +60,6 @@ main > section:not(.hero)::after {
     border: 1px solid var(--gold);
 }
 
-.hero {
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        black 0%,
-        black 65%,
-        rgba(0, 0, 0, .8) 78%,
-        rgba(0, 0, 0, .35) 90%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        black 0%,
-        black 65%,
-        rgba(0, 0, 0, .8) 78%,
-        rgba(0, 0, 0, .35) 90%,
-        transparent 100%
-    );
-}
-
-
-
 .follow {
     align-items: center;
     display: flex;

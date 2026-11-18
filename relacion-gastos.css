@@ -1,11 +1,10 @@
-/* RELACIÓN DE GASTOS */
+
 .philosophy {
     align-items: center;
     background:
         linear-gradient(
             to bottom,
-            #ffffff 0%,
-            rgba(255, 255, 255, .75) 8%,
+            
             rgba(0, 0, 0, .50) 30%,
             rgba(0, 0, 0, .50) 100%
         ),
