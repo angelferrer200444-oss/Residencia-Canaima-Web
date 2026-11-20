@@ -6,8 +6,7 @@
             to bottom,
             rgba(0, 0, 0, .50) 0%,
             rgba(0, 0, 0, .50) 100%
-        ),
-        url("imagenes/gatos.jpg") center center / cover;
+        );
 
     display: flex;
     justify-content: flex-end;
