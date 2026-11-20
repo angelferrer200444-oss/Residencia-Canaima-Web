@@ -1,70 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="American Campers - wild life camping adventures">
+
+    <meta name="description" content="Residencia Canaima - información, relaciones de gastos y servicios del condominio.">
+
     <title>Residencia Canaima</title>
+
     <link rel="preload" as="image" href="menu/imagenes/residencia.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Slab:wght@700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS originales -->
     <link rel="stylesheet" href="menu/css/relacion-gastos.css">
     <link rel="stylesheet" href="menu/css/styles.css">
+
+    <!-- Nuevo CSS botánico -->
+    <link rel="stylesheet" href="menu/css/jardin.css">
+
     <script src="menu/js/animations.js" defer></script>
     <script src="menu/js/hero-bg.js" defer></script>
 </head>
+
 <body>
     <main>
+
+        <!-- PORTADA -->
         <section class="hero reveal-section" aria-labelledby="hero-title">
             <div class="hero-content">
                 <p class="eyebrow">CONDOMINIO</p>
                 <h1 id="hero-title">RESIDENCIA CANAIMA</h1>
                 <div class="brush-line" aria-hidden="true"></div>
             </div>
+
             <div class="hero-brush" aria-hidden="true"></div>
         </section>
 
-        <section class="philosophy reveal-section">
+
+        <!-- RELACIÓN DE GASTOS BOLÍVARES -->
+        <section class="philosophy garden-card garden-card-1 reveal-section">
+
+            <div class="garden-light" aria-hidden="true"></div>
+
+            <div class="garden-leaves" aria-hidden="true">
+                <img class="garden-leaf leaf-1" src="menu/imagenes/1.png" alt="">
+                <img class="garden-leaf leaf-2" src="menu/imagenes/2.png" alt="">
+                <img class="garden-leaf leaf-3" src="menu/imagenes/3.png" alt="">
+                <img class="garden-leaf leaf-4" src="menu/imagenes/4.png" alt="">
+                <img class="garden-leaf leaf-5" src="menu/imagenes/5.png" alt="">
+                <img class="garden-leaf leaf-6" src="menu/imagenes/6.png" alt="">
+                <img class="garden-leaf leaf-7" src="menu/imagenes/7.png" alt="">
+            </div>
+
             <div class="section-inner">
                 <h2>Relación de gastos Bolívares</h2>
 
                 <a href="Consulta de mes/consultadelmes.html?tipo=bolivares"
-                class="button button-primary">
+                   class="button button-primary">
                     Consultar gastos
                 </a>
             </div>
         </section>
 
-        <section class="philosophy reveal-section">
+
+        <!-- RELACIÓN DE GASTOS DIVISAS -->
+        <section class="philosophy garden-card garden-card-2 reveal-section">
+
+            <div class="garden-light" aria-hidden="true"></div>
+
+            <div class="garden-leaves" aria-hidden="true">
+                <img class="garden-leaf leaf-1" src="menu/imagenes/3.png" alt="">
+                <img class="garden-leaf leaf-2" src="menu/imagenes/5.png" alt="">
+                <img class="garden-leaf leaf-3" src="menu/imagenes/1.png" alt="">
+                <img class="garden-leaf leaf-4" src="menu/imagenes/7.png" alt="">
+                <img class="garden-leaf leaf-5" src="menu/imagenes/2.png" alt="">
+                <img class="garden-leaf leaf-6" src="menu/imagenes/4.png" alt="">
+                <img class="garden-leaf leaf-7" src="menu/imagenes/6.png" alt="">
+            </div>
+
             <div class="section-inner">
                 <h2>Relación de gastos Divisas</h2>
 
                 <a href="Consulta de mes/consultadelmes.html?tipo=divisas"
-                class="button button-primary">
+                   class="button button-primary">
                     Consultar gastos
                 </a>
             </div>
         </section>
 
-        <section class="philosophy reveal-section">
+
+        <!-- RELACIÓN DE GASTOS DARU -->
+        <section class="philosophy garden-card garden-card-3 reveal-section">
+
+            <div class="garden-light" aria-hidden="true"></div>
+
+            <div class="garden-leaves" aria-hidden="true">
+                <img class="garden-leaf leaf-1" src="menu/imagenes/6.png" alt="">
+                <img class="garden-leaf leaf-2" src="menu/imagenes/4.png" alt="">
+                <img class="garden-leaf leaf-3" src="menu/imagenes/2.png" alt="">
+                <img class="garden-leaf leaf-4" src="menu/imagenes/1.png" alt="">
+                <img class="garden-leaf leaf-5" src="menu/imagenes/7.png" alt="">
+                <img class="garden-leaf leaf-6" src="menu/imagenes/5.png" alt="">
+                <img class="garden-leaf leaf-7" src="menu/imagenes/3.png" alt="">
+            </div>
+
             <div class="section-inner">
                 <h2>Relación de gastos DARU</h2>
 
                 <a href="Consulta de mes/consultadelmes.html?tipo=daru"
-                class="button button-primary">
+                   class="button button-primary">
                     Consultar gastos
                 </a>
             </div>
         </section>
 
 
-
+        <!-- ÁREAS COMUNES -->
         <section class="tours reveal-section" id="adventures">
             <div class="tours-brush" aria-hidden="true"></div>
+
             <div class="section-inner">
                 <h2>Áreas comunes</h2>
+
                 <a href="#" class="button button-primary" id="btn-areas-comunes">
                     Ver Áreas comunes
                 </a>
@@ -72,36 +135,49 @@
         </section>
 
 
+        <!-- ACTA CONSTITUTIVA -->
         <section class="adventure-types reveal-section" id="experiences">
             <div class="section-inner">
                 <h2>Acta constitutiva</h2>
-                <a href="https://drive.google.com/drive/folders/1717KtFkWloFKUajHKLgeZjQhRU7keg05" class="button button-primary" id="btn-acta-constitutiva">
+
+                <a href="https://drive.google.com/drive/folders/1717KtFkWloFKUajHKLgeZjQhRU7keg05"
+                   class="button button-primary"
+                   id="btn-acta-constitutiva">
                     Ver Acta Constitutiva
                 </a>
             </div>
         </section>
 
+
+        <!-- NORMAS DE LOS TRABAJADORES -->
         <section class="benefits reveal-section">
             <div class="section-inner">
                 <h2>Normas de los trabajadores</h2>
+
                 <a href="#" class="button button-primary" id="btn-normas-trabajadores">
                     Ver Normas de los trabajadores
                 </a>
             </div>
         </section>
 
+
+        <!-- NORMAS DE CONVIVENCIA -->
         <section class="testimonials reveal-section" id="testimonials">
             <div class="section-inner">
                 <h2>Normas de Convivencia</h2>
+
                 <a href="#" class="button button-primary" id="btn-normas-convivencia">
                     Ver Normas de Convivencia
                 </a>
             </div>
         </section>
 
+
+        <!-- CANON DE LA COMUNIÓN -->
         <section class="contact reveal-section" id="contact">
             <div class="section-inner">
                 <h2>Canon de las Comunión</h2>
+
                 <a href="#" class="button button-primary" id="btn-canon-comunión">
                     Ver Canon de la Comunión
                 </a>
@@ -110,10 +186,12 @@
 
     </main>
 
-    <!-- BOTÓN FLOTANTE PARA DESPLAZARSE HACIA ABAJO -->
+
+    <!-- BOTÓN FLOTANTE -->
     <button class="scroll-hint" type="button" aria-label="Bajar por la página">
         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
     </button>
 
 </body>
 </html>
+

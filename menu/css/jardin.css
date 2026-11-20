@@ -1,0 +1,634 @@
+/* ==========================================================
+   RESIDENCIA CANAIMA
+   JARDÍN ILUMINADO
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. CONTENEDORES
+   ---------------------------------------------------------- */
+
+.philosophy.garden-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    /* Fondo base — cada tarjeta lo sobreescribe con su imagen */
+    background: #f7f2e6;
+}
+
+/* Las hojas PNG se muestran como sombras sobre las fotos de fondo */
+
+/* Ocultar la capa de iluminación sintética */
+.philosophy.garden-card .garden-light {
+    display: none;
+}
+
+
+/* Evitar los bordes decorativos heredados */
+
+.philosophy.garden-card::before,
+.philosophy.garden-card::after {
+    content: none;
+    display: none;
+}
+
+
+/* ----------------------------------------------------------
+   2. ILUMINACIÓN NATURAL
+   ---------------------------------------------------------- */
+
+.garden-light {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 48%,
+            rgba(255, 255, 255, .78) 0%,
+            rgba(255, 255, 255, .35) 42%,
+            transparent 75%
+        ),
+        linear-gradient(
+            115deg,
+            transparent 10%,
+            rgba(255, 255, 255, .20) 35%,
+            rgba(255, 255, 255, .50) 49%,
+            rgba(255, 255, 255, .15) 68%,
+            transparent 90%
+        );
+}
+
+
+/* Luz que se desplaza lentamente */
+
+.garden-light::before {
+    content: "";
+
+    position: absolute;
+    inset: -30%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 25%,
+            rgba(255, 255, 255, .15) 39%,
+            rgba(255, 255, 255, .30) 45%,
+            transparent 60%
+        );
+
+    animation: garden-window-light 28s ease-in-out infinite alternate;
+}
+
+
+/* ----------------------------------------------------------
+   3. CAPA DE HOJAS
+   ---------------------------------------------------------- */
+
+.garden-leaves {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+/* ----------------------------------------------------------
+   4. APARIENCIA DE LOS PNG
+   ---------------------------------------------------------- */
+
+.garden-leaf {
+    position: absolute;
+
+    display: block;
+
+    height: auto;
+    max-width: none;
+
+    object-fit: contain;
+
+    /*
+       Oscurece las hojas conservando su transparencia.
+       El resultado se integra con el fondo como una sombra.
+    */
+
+    filter:
+        brightness(0)
+        opacity(.17)
+        blur(.45px)
+        drop-shadow(
+            0 9px 13px rgba(35, 48, 27, .17)
+        );
+
+    mix-blend-mode: multiply;
+
+    transform-origin: center center;
+
+    animation: garden-leaf-sway 25s ease-in-out infinite alternate;
+}
+
+
+/* ----------------------------------------------------------
+   5. POSICIONES DE LAS SIETE HOJAS
+   ---------------------------------------------------------- */
+
+/* Hoja 1 */
+
+.leaf-1 {
+    width: clamp(210px, 29vw, 390px);
+
+    left: -5%;
+    top: -15%;
+
+    transform: rotate(-28deg);
+
+    animation-delay: -4s;
+}
+
+
+/* Hoja 2 */
+
+.leaf-2 {
+    width: clamp(190px, 25vw, 330px);
+
+    right: -3%;
+    top: -19%;
+
+    transform: rotate(38deg);
+
+    animation-delay: -11s;
+}
+
+
+/* Hoja 3 */
+
+.leaf-3 {
+    width: clamp(190px, 26vw, 350px);
+
+    left: 8%;
+    bottom: -36%;
+
+    transform: rotate(24deg);
+
+    animation-delay: -7s;
+}
+
+
+/* Hoja 4 */
+
+.leaf-4 {
+    width: clamp(230px, 30vw, 400px);
+
+    right: -8%;
+    bottom: -33%;
+
+    transform: rotate(-35deg);
+
+    animation-delay: -15s;
+}
+
+
+/* Hoja 5 */
+
+.leaf-5 {
+    width: clamp(140px, 18vw, 240px);
+
+    left: 26%;
+    top: -26%;
+
+    transform: rotate(65deg);
+
+    animation-delay: -9s;
+}
+
+
+/* Hoja 6 */
+
+.leaf-6 {
+    width: clamp(160px, 21vw, 280px);
+
+    right: 24%;
+    bottom: -32%;
+
+    transform: rotate(-58deg);
+
+    animation-delay: -18s;
+}
+
+
+/* Hoja 7 */
+
+.leaf-7 {
+    width: clamp(130px, 17vw, 225px);
+
+    left: 43%;
+    top: -29%;
+
+    transform: rotate(12deg);
+
+    animation-delay: -13s;
+}
+
+
+/* ----------------------------------------------------------
+   6. COMPOSICIÓN DE BOLÍVARES
+   ---------------------------------------------------------- */
+
+.philosophy.garden-card-1 {
+    background:
+        url('../imagenes/fondo1.jpg') center / cover no-repeat;
+}
+
+.garden-card-1 .garden-light {
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255, 255, 255, .05) 10%,
+            rgba(255, 255, 255, .62) 47%,
+            rgba(255, 255, 255, .08) 80%
+        );
+}
+
+
+/* ----------------------------------------------------------
+   7. COMPOSICIÓN DE DIVISAS
+   ---------------------------------------------------------- */
+
+.philosophy.garden-card-2 {
+    background:
+        url('../imagenes/fondo2.jpg') center / cover no-repeat;
+}
+
+.garden-card-2 .leaf-1 {
+    left: -10%;
+    top: -20%;
+    width: clamp(250px, 33vw, 440px);
+    transform: rotate(18deg);
+}
+
+.garden-card-2 .leaf-2 {
+    right: -8%;
+    top: -12%;
+    transform: rotate(55deg);
+}
+
+.garden-card-2 .leaf-3 {
+    left: -3%;
+    bottom: -38%;
+    transform: rotate(-10deg);
+}
+
+.garden-card-2 .leaf-4 {
+    right: 0%;
+    bottom: -40%;
+    transform: rotate(-50deg);
+}
+
+.garden-card-2 .leaf-5 {
+    left: 35%;
+    top: -32%;
+    transform: rotate(80deg);
+}
+
+.garden-card-2 .leaf-6 {
+    right: 32%;
+    bottom: -36%;
+    transform: rotate(-25deg);
+}
+
+.garden-card-2 .leaf-7 {
+    left: 68%;
+    top: -25%;
+    transform: rotate(35deg);
+}
+
+
+/* ----------------------------------------------------------
+   8. COMPOSICIÓN DE DARU
+   ---------------------------------------------------------- */
+
+.philosophy.garden-card-3 {
+    background:
+        url('../imagenes/fondo3.jpg') center / cover no-repeat;
+}
+
+.garden-card-3 .leaf-1 {
+    left: -8%;
+    top: -30%;
+    transform: rotate(-5deg);
+}
+
+.garden-card-3 .leaf-2 {
+    right: -10%;
+    top: -22%;
+    transform: rotate(25deg);
+}
+
+.garden-card-3 .leaf-3 {
+    left: 0%;
+    bottom: -35%;
+    transform: rotate(50deg);
+}
+
+.garden-card-3 .leaf-4 {
+    right: -5%;
+    bottom: -38%;
+    transform: rotate(-25deg);
+}
+
+.garden-card-3 .leaf-5 {
+    left: 32%;
+    top: -31%;
+    transform: rotate(110deg);
+}
+
+.garden-card-3 .leaf-6 {
+    right: 30%;
+    bottom: -35%;
+    transform: rotate(-75deg);
+}
+
+.garden-card-3 .leaf-7 {
+    left: 62%;
+    top: -30%;
+    transform: rotate(0deg);
+}
+
+
+/* ----------------------------------------------------------
+   9. MOVIMIENTO DE LAS HOJAS
+   ---------------------------------------------------------- */
+
+@keyframes garden-leaf-sway {
+
+    0% {
+        translate: 0 0;
+        rotate: -2deg;
+    }
+
+    50% {
+        translate: 5px 9px;
+        rotate: 1deg;
+    }
+
+    100% {
+        translate: -4px -5px;
+        rotate: 2deg;
+    }
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes garden-window-light {
+
+    0% {
+        transform: translateX(-3%) translateY(0);
+        opacity: .55;
+    }
+
+    50% {
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateX(3%) translateY(1%);
+        opacity: .65;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   10. TABLETS
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .garden-leaf {
+        filter:
+            brightness(0)
+            opacity(.15)
+            blur(.5px)
+            drop-shadow(
+                0 8px 12px rgba(35, 48, 27, .15)
+            );
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   11. MÓVILES
+   ---------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .leaf-1 {
+        width: 230px;
+        left: -20%;
+        top: -8%;
+    }
+
+    .leaf-2 {
+        width: 210px;
+        right: -22%;
+        top: -12%;
+    }
+
+    .leaf-3 {
+        width: 210px;
+        left: -10%;
+        bottom: -35%;
+    }
+
+    .leaf-4 {
+        width: 230px;
+        right: -20%;
+        bottom: -35%;
+    }
+
+    .leaf-5 {
+        width: 145px;
+        left: 20%;
+        top: -25%;
+    }
+
+    .leaf-6 {
+        width: 155px;
+        right: 15%;
+        bottom: -28%;
+    }
+
+    .leaf-7 {
+        width: 125px;
+        left: 48%;
+        top: -26%;
+    }
+
+    .garden-leaf {
+        filter:
+            brightness(0)
+            opacity(.14)
+            blur(.55px);
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   12. ACCESIBILIDAD
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .garden-leaf,
+    .garden-light::before {
+        animation: none !important;
+    }
+
+}
+
+
+/* Color verde claro en los textos */
+.philosophy.garden-card h2 {
+    color: #ffffff;
+    -webkit-text-stroke: 1px #294b36;
+    text-shadow:
+        1px 1px 0 #294b36,
+       -1px -1px 0 #294b36,
+        1px -1px 0 #294b36,
+       -1px  1px 0 #294b36;
+}
+
+
+
+/* ==========================================================
+   AJUSTE DE TAMAÑO Y PRESENCIA DE LAS HOJAS
+   ========================================================== */
+
+/* Más presencia en pantallas grandes */
+
+.garden-card .garden-leaf {
+    filter:
+        brightness(0)
+        opacity(.25)
+        blur(.35px)
+        drop-shadow(0 12px 18px rgba(35, 48, 27, .20));
+}
+
+/* Hojas principales */
+
+.garden-card .leaf-1 {
+    width: clamp(300px, 39vw, 540px);
+    left: -8%;
+    top: -24%;
+}
+
+.garden-card .leaf-2 {
+    width: clamp(280px, 36vw, 490px);
+    right: -8%;
+    top: -25%;
+}
+
+.garden-card .leaf-3 {
+    width: clamp(280px, 36vw, 490px);
+    left: -5%;
+    bottom: -48%;
+}
+
+.garden-card .leaf-4 {
+    width: clamp(310px, 40vw, 550px);
+    right: -9%;
+    bottom: -48%;
+}
+
+/* Hojas secundarias */
+
+.garden-card .leaf-5 {
+    width: clamp(190px, 25vw, 340px);
+    left: 20%;
+    top: -38%;
+}
+
+.garden-card .leaf-6 {
+    width: clamp(210px, 27vw, 370px);
+    right: 18%;
+    bottom: -42%;
+}
+
+.garden-card .leaf-7 {
+    width: clamp(180px, 23vw, 310px);
+    left: 42%;
+    top: -38%;
+}
+
+
+/* ==========================================================
+   MÓVILES: COMPOSICIÓN MÁS ABUNDANTE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .garden-card .garden-leaf {
+        filter:
+            brightness(0)
+            opacity(.28)
+            blur(.3px)
+            drop-shadow(0 8px 12px rgba(35, 48, 27, .20));
+    }
+
+    .garden-card .leaf-1 {
+        width: 310px;
+        left: -42%;
+        top: -15%;
+    }
+
+    .garden-card .leaf-2 {
+        width: 300px;
+        right: -42%;
+        top: -17%;
+    }
+
+    .garden-card .leaf-3 {
+        width: 290px;
+        left: -38%;
+        bottom: -38%;
+    }
+
+    .garden-card .leaf-4 {
+        width: 320px;
+        right: -43%;
+        bottom: -39%;
+    }
+
+    .garden-card .leaf-5 {
+        width: 215px;
+        left: 12%;
+        top: -34%;
+    }
+
+    .garden-card .leaf-6 {
+        width: 225px;
+        right: 8%;
+        bottom: -36%;
+    }
+
+    .garden-card .leaf-7 {
+        width: 190px;
+        left: 42%;
+        top: -35%;
+    }
+
+}
+
+/* Centrar contenido de la tarjeta Divisas */
+.garden-card-2 .section-inner {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
