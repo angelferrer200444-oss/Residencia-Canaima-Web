@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // CONFIGURACIÓN
     // ========================================
 
-    const ARCHIVO_DATOS = "./datos.txt";
+    const ARCHIVO_DATOS = "./js/datos.txt";
     const tabla = document.querySelector(".ledger tbody");
     const resumen = document.querySelectorAll(".summary-item strong");
 

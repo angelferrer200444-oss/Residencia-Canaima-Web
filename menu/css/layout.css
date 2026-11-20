@@ -13,7 +13,7 @@
 .hero.has-image {
     background:
         linear-gradient(rgba(0, 0, 0, .80), rgba(0, 0, 0, .40)),
-        url("imagenes/residencia.jpg") center center / cover;
+        url("../imagenes/residencia.jpg") center center / cover;
 }
 
 .hero-content {
@@ -60,7 +60,7 @@ h1 {
 .adventure-types {
     background:
         linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .55)),
-        url("imagenes/acta-constitutiva.jpg") center center / cover;
+        url("../imagenes/acta-constitutiva.jpg") center center / cover;
     color: var(--white);
     min-height: 500px;
     padding: 105px 20px 80px;
