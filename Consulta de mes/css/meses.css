@@ -268,3 +268,88 @@ body {
         transition-duration: .01ms !important;
     }
 }
+
+/* =========================================
+   SELECTOR DE AÑO Y ETIQUETAS DE MESES
+========================================= */
+
+/* SELECTOR DE AÑO */
+
+.months-toolbar {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 22px;
+}
+
+.year-selector {
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    gap: 18px;
+    padding: 8px 12px;
+}
+
+.selected-year {
+    color: var(--dark);
+    font-size: 17px;
+    font-weight: 700;
+    min-width: 48px;
+    text-align: center;
+}
+
+.year-arrow {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--green);
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    height: 30px;
+    justify-content: center;
+    transition: background .2s ease, color .2s ease;
+    width: 30px;
+}
+
+.year-arrow:hover {
+    background: var(--green);
+    color: var(--white);
+}
+
+.year-arrow:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+/* AÑO DENTRO DE LAS TARJETAS */
+
+.month-year {
+    color: var(--gray);
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 7px;
+}
+
+/* ADAPTACIÓN PARA MÓVILES */
+
+@media (max-width: 520px) {
+
+    .months-toolbar {
+        margin-bottom: 16px;
+    }
+
+    .year-selector {
+        gap: 12px;
+        padding: 6px 9px;
+    }
+
+    .month-year {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
