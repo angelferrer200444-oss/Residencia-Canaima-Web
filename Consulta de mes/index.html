@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f3f4f7">
 
-    <title>Residencia Canaima | Consulta de mes</title>
+    <title>Residencia Canaima | Relación de gastos</title>
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -13,64 +13,55 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/sort.css">
     <link rel="stylesheet" href="css/dark-mode.css">
-    <script src="js/dark-mode.js"></script>
 
+    <script src="js/dark-mode.js"></script>
 </head>
 
 <body>
 
     <main class="page">
 
-        <!-- ENCABEZADO -->
         <header class="page-header">
 
-            <!-- BOTÓN PARA RETROCEDER -->
             <button
                 class="back-button"
                 type="button"
                 onclick="history.back()"
                 aria-label="Volver a la página anterior"
-                title="Volver"
-            >
+                title="Volver">
                 <span aria-hidden="true">←</span>
             </button>
 
-
-            <!-- INFORMACIÓN CENTRADA -->
             <div class="header-info">
-
                 <p class="eyebrow">RESIDENCIA CANAIMA</p>
-
                 <h1>Relación de gastos</h1>
-
             </div>
 
-
-            <!-- PERÍODO -->
             <div class="period">
 
                 <span class="period-label">PERÍODO</span>
 
                 <div class="period-controls">
 
-                    <!-- SELECTOR DE MES -->
                     <div class="period-select-container" id="mes-select-container">
-                        <button
-                            type="button"
+
+                        <button type="button"
                             class="period-select-btn"
                             id="mes-select-btn"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Seleccionar mes"
-                            title="Seleccionar mes"
-                        >
+                            title="Seleccionar mes">
+
                             <span class="period-select-text">Febrero</span>
                             <span class="period-select-arrow" aria-hidden="true">▾</span>
+
                         </button>
 
                         <div class="period-select-menu" id="mes-select-menu" hidden>
+
                             <button type="button" class="period-select-option" data-value="enero">Enero</button>
-                            <button type="button" class="period-select-option is-selected" data-value="febrero">Febrero</button>
+                            <button type="button" class="period-select-option" data-value="febrero">Febrero</button>
                             <button type="button" class="period-select-option" data-value="marzo">Marzo</button>
                             <button type="button" class="period-select-option" data-value="abril">Abril</button>
                             <button type="button" class="period-select-option" data-value="mayo">Mayo</button>
@@ -81,26 +72,29 @@
                             <button type="button" class="period-select-option" data-value="octubre">Octubre</button>
                             <button type="button" class="period-select-option" data-value="noviembre">Noviembre</button>
                             <button type="button" class="period-select-option" data-value="diciembre">Diciembre</button>
+
                         </div>
+
                     </div>
 
-                    <!-- SELECTOR DE AÑO -->
                     <div class="period-select-container" id="anio-select-container">
-                        <button
-                            type="button"
+
+                        <button type="button"
                             class="period-select-btn"
                             id="anio-select-btn"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Seleccionar año"
-                            title="Seleccionar año"
-                        >
+                            title="Seleccionar año">
+
                             <span class="period-select-text">2026</span>
                             <span class="period-select-arrow" aria-hidden="true">▾</span>
+
                         </button>
 
                         <div class="period-select-menu" id="anio-select-menu" hidden>
-                            <button type="button" class="period-select-option is-selected" data-value="2026">2026</button>
+
+                            <button type="button" class="period-select-option" data-value="2026">2026</button>
                             <button type="button" class="period-select-option" data-value="2027">2027</button>
                             <button type="button" class="period-select-option" data-value="2028">2028</button>
                             <button type="button" class="period-select-option" data-value="2029">2029</button>
@@ -110,7 +104,9 @@
                             <button type="button" class="period-select-option" data-value="2033">2033</button>
                             <button type="button" class="period-select-option" data-value="2034">2034</button>
                             <button type="button" class="period-select-option" data-value="2035">2035</button>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -120,30 +116,26 @@
         </header>
 
 
-
-        <!-- TABLA DE MOVIMIENTOS -->
         <section class="ledger-section">
 
             <div class="section-heading">
 
-                <!-- BOTÓN DE ORDENAMIENTO -->
                 <div class="sort-container">
 
-                    <button
-                        type="button"
+                    <button type="button"
                         class="sort-button"
                         id="sort-button"
                         aria-expanded="false"
                         aria-controls="sort-menu"
                         aria-label="Ordenar movimientos"
-                        title="Ordenar movimientos"
-                    >
+                        title="Ordenar movimientos">
+
                         <span></span>
                         <span></span>
                         <span></span>
+
                     </button>
 
-                    <!-- OPCIONES -->
                     <div class="sort-menu" id="sort-menu" hidden>
 
                         <button type="button" class="sort-option" data-sort="fecha-asc">
@@ -174,24 +166,21 @@
 
                 </div>
 
-                <!-- TÍTULO -->
                 <h2>Movimientos del mes</h2>
 
-                <!-- BUSCADOR -->
                 <div class="search-container">
-                    <input
-                        type="search"
+
+                    <input type="search"
                         id="search-movements"
                         placeholder="Buscar movimiento..."
                         aria-label="Buscar por descripción"
-                        autocomplete="off"
-                    >
+                        autocomplete="off">
+
                     <span class="search-icon" aria-hidden="true">⌕</span>
+
                 </div>
 
             </div>
-
-
 
 
             <div class="table-wrap">
@@ -199,27 +188,13 @@
                 <table class="ledger">
 
                     <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
-                            <th class="number">Ingreso</th>
-                            <th class="number">Egreso</th>
-                            <th class="number">Saldo</th>
-                            <th class="number">Tasa</th>
-                            <th>Factura</th>
-                        </tr>
+                        <tr id="ledger-headers"></tr>
                     </thead>
 
                     <tbody>
-
-                        <!-- Aquí se agregarán posteriormente los movimientos -->
-
                         <tr class="empty-row">
-                            <td colspan="7">
-                                Todavía no hay movimientos registrados.
-                            </td>
+                            <td> Cargando movimientos... </td>
                         </tr>
-
                     </tbody>
 
                 </table>
@@ -229,7 +204,6 @@
         </section>
 
 
-        <!-- RESUMEN FINANCIERO -->
         <section class="summary-section">
 
             <h2>Resumen financiero</h2>
@@ -266,7 +240,6 @@
         </section>
 
 
-        <!-- PIE DE PÁGINA -->
         <footer class="page-footer">
             <span>Residencia Canaima</span>
             <span>Relación mensual de ingresos y gastos</span>
@@ -274,13 +247,16 @@
 
     </main>
 
+
     <script src="js/script.js"></script>
     <script src="js/search.js"></script>
     <script src="js/sort.js"></script>
 
-    <!-- BOTÓN DE MODO NOCTURNO (SOL / LUNA) -->
-    <button class="theme-toggle" type="button" aria-label="Cambiar modo" title="Cambiar modo">
+    <button class="theme-toggle" type="button"
+        aria-label="Cambiar modo" title="Cambiar modo">
+
         <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+
     </button>
 
 </body>
