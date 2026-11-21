@@ -3,20 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Residencia Canaima</title>
+    <title>Condominio Residencia Canaima</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-container">
+        <!-- Top Navigation Bar: Visitante a la izquierda, Modo Nocturno en la esquina derecha -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <!-- User Profile Button & Badge -->
+                <button class="icon-btn dark-btn" id="userBtn" aria-label="Usuario" title="Perfil de usuario">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                    </svg>
+                </button>
+                <div class="user-pill-badge" id="userBadge">
+                    <span class="user-pill-name" id="userNameLabel">Visitante</span>
+                </div>
+            </div>
 
-    <h1>Residencia Canaima</h1>
+            <!-- Right Corner: Botón de Modo Nocturno / Diurno -->
+            <div class="nav-right">
+                <button class="icon-btn pink-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Cambiar tema" title="Modo diurno / nocturno">
+                    <!-- Sun / Rays Icon -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
 
-    <a href="Consulta de mes/consultadelmes.html?tipo=bolivares" class="button button-primary">Relación de gastos Bolívares</a>
-    <a href="Consulta de mes/consultadelmes.html?tipo=divisas" class="button button-primary">Relación de gastos Divisas</a>
-    <a href="Consulta de mes/consultadelmes.html?tipo=daru" class="button button-primary">Relación de gastos DARU</a>
-    <a href="#" class="button button-primary" id="btn-areas-comunes">Áreas comunes</a>
-    <a href="https://drive.google.com/drive/folders/1717KtFkWloFKUajHKLgeZjQhRU7keg05" class="button button-primary" id="btn-acta-constitutiva">Acta Constitutiva</a>
-    <a href="#" class="button button-primary" id="btn-normas-trabajadores">Normas de los trabajadores</a>
-    <a href="#" class="button button-primary" id="btn-normas-convivencia">Normas de Convivencia</a>
-    <a href="#" class="button button-primary" id="btn-canon-comunión">Canon de la Comunión</a>
+        <!-- Main Hero Banner Section: Condominio RESIDENCIA CANAIMA (Tal como en el boceto) -->
+        <section class="hero-wrapper">
+            <div class="hero-card hero-card-centered" id="heroCard">
+                <!-- Background Decorative Circles -->
+                <div class="hero-bg-shapes">
+                    <div class="circle-decoration circle-1"></div>
+                    <div class="circle-decoration circle-2"></div>
+                </div>
 
+                <!-- Central Content: Condominio RESIDENCIA CANAIMA -->
+                <div class="hero-center-content">
+                    <span class="hero-eyebrow">Condominio</span>
+                    <h1 class="hero-main-title">RESIDENCIA CANAIMA</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Grid Section (4 Columns) -->
+        <main class="bottom-grid">
+            <!-- 1. NOTICIAS (Carrusel con botones < y >) -->
+            <section class="grid-col anime-scene-col">
+                <div class="section-header">
+                    <h2 class="section-title">Noticias</h2>
+                </div>
+
+                <!-- Carrusel de Noticias con botones laterales tal como en el boceto -->
+                <div class="noticias-carousel-wrapper">
+                    <button class="noticias-nav-btn prev-btn" id="noticiasPrevBtn" aria-label="Noticia anterior">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="noticias-viewport">
+                        <div class="noticias-track" id="noticiasTrack">
+                            <!-- Cards de noticias inyectadas/manejadas dinámicamente -->
+                        </div>
+                    </div>
+
+                    <button class="noticias-nav-btn next-btn" id="noticiasNextBtn" aria-label="Siguiente noticia">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="view-more-btn" id="viewMoreBtn">Ver más</button>
+            </section>
+
+            <!-- 2. RELACIÓN GASTOS -->
+            <section class="grid-col recent-search-col">
+                <div class="section-header">
+                    <h2 class="section-title">Relación Gastos</h2>
+                </div>
+
+                <div class="search-tags-list">
+                    <!-- Bolívares -->
+                    <a href="Consulta de mes/consultadelmes.html?tipo=bolivares" class="search-tag tag-pink-light">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <path d="M9.5 9h3a1.5 1.5 0 0 1 0 3h-3m0 0h3.5a1.5 1.5 0 0 1 0 3h-3.5m0-6v6"></path>
+                        </svg>
+                        <span>Bolívares</span>
+                    </a>
+
+                    <!-- Divisas -->
+                    <a href="Consulta de mes/consultadelmes.html?tipo=divisas" class="search-tag tag-pink-medium">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        <span>Divisas</span>
+                    </a>
+
+                    <!-- DARU -->
+                    <a href="Consulta de mes/consultadelmes.html?tipo=daru" class="search-tag tag-pink-deep">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                            <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="13" y2="12"></line>
+                        </svg>
+                        <span>DARU</span>
+                    </a>
+
+                    <!-- Botón Ajustable -->
+                    <button class="search-tag tag-dark" id="btnAjustable">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        <span id="labelBotonAjustable">Botón Ajustable</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. ÁREAS COMUNES Y CANON DE LA COMUNIÓN -->
+            <section class="grid-col stickers-col">
+                <!-- Card 1: Áreas Comunes -->
+                <div class="sticker-card sticker-top" id="cardAreasComunes">
+                    <div class="sticker-placeholder">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span class="sticker-label">Áreas Comunes</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Canon de la Comunión -->
+                <div class="sticker-card sticker-bottom" id="cardCanonComunion">
+                    <div class="sticker-placeholder">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                        </svg>
+                        <span class="sticker-label">Canon de la Comunión</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. NORMAS Y ACTA CONSTITUTIVA -->
+            <section class="grid-col characters-col">
+                <!-- Card 1: Norma del Trabajador -->
+                <article class="character-card" id="btnNormasTrabajadores">
+                    <div class="char-thumb placeholder-thumb">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <div class="char-info">
+                        <h3 class="char-name">Norma del Trabajador</h3>
+                        <p class="char-bio">
+                            Reglamento interno laboral, horarios de servicio y responsabilidades del personal de conserjería y mantenimiento.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Card 2: Norma de Convivencia -->
+                <article class="character-card" id="btnNormasConvivencia">
+                    <div class="char-thumb placeholder-thumb">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        </svg>
+                    </div>
+                    <div class="char-info">
+                        <h3 class="char-name">Norma de Convivencia</h3>
+                        <p class="char-bio">
+                            Pautas vecinales de respeto mutuo, horarios de silencio, tenencia de mascotas y buen uso de instalaciones.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Card 3: Acta Constitutiva -->
+                <a href="https://drive.google.com/drive/folders/1717KtFkWloFKUajHKLgeZjQhRU7keg05" target="_blank" rel="noopener noreferrer" class="character-card doc-link-card" id="btnActaConstitutiva">
+                    <div class="char-thumb placeholder-thumb">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                        </svg>
+                    </div>
+                    <div class="char-info">
+                        <h3 class="char-name">Acta Constitutiva</h3>
+                        <p class="char-bio">
+                            Documento legal registrado, estatutos oficiales del condominio y alícuotas disponibles en Google Drive.
+                        </p>
+                    </div>
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <!-- Interactive Modal -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar modal">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <div class="modal-icon-badge" id="modalIcon"></div>
+                <h3 class="modal-title" id="modalTitle">Título</h3>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="pill-btn solid-pink-btn" id="modalActionBtn">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toastMessage"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
