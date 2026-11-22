@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condominio Residencia Canaima</title>
+    <!-- Preload Carousel Images (Iniciando por la primera para la animación de entrada) -->
+    <link rel="preload" as="image" href="imagenes/photo_2026-11-18_16-37-37.jpg">
+    <link rel="preload" as="image" href="imagenes/photo_2026-11-18_16-37-37%20(2).jpg">
+    <link rel="preload" as="image" href="imagenes/photo_2026-11-18_16-37-37%20(3).jpg">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +18,11 @@
     <!-- Animación de Entrada Pantalla Completa ("Encaje Perfecto") -->
     <div class="intro-overlay" id="introOverlay" aria-hidden="true">
         <div class="intro-backdrop" id="introBackdrop">
+            <!-- Carrusel de fondo en animación de aparición (Empieza con la primera imagen precargada) -->
+            <div class="intro-carousel" id="introCarousel">
+                <div class="intro-carousel-slide" id="introCarouselSlide" style="background-image: url('imagenes/photo_2026-11-18_16-37-37.jpg');"></div>
+                <div class="intro-carousel-overlay"></div>
+            </div>
             <div class="intro-bg-shapes">
                 <div class="intro-circle intro-circle-1"></div>
                 <div class="intro-circle intro-circle-2"></div>
@@ -76,6 +85,14 @@
         <!-- Main Hero Banner Section: Condominio RESIDENCIA CANAIMA (Tal como en el boceto) -->
         <section class="hero-wrapper">
             <div class="hero-card hero-card-centered" id="heroCard">
+                <!-- Carrusel de Imágenes de Fondo (Ciclo de 3 segundos con fallback a fondo verde) -->
+                <div class="hero-carousel" id="heroCarousel" aria-hidden="true">
+                    <div class="hero-carousel-slide active" data-index="0" style="background-image: url('imagenes/photo_2026-11-18_16-37-37.jpg');"></div>
+                    <div class="hero-carousel-slide" data-index="1" style="background-image: url('imagenes/photo_2026-11-18_16-37-37%20(2).jpg');"></div>
+                    <div class="hero-carousel-slide" data-index="2" style="background-image: url('imagenes/photo_2026-11-18_16-37-37%20(3).jpg');"></div>
+                    <div class="hero-carousel-overlay"></div>
+                </div>
+
                 <!-- Background Decorative Circles -->
                 <div class="hero-bg-shapes">
                     <div class="circle-decoration circle-1"></div>

@@ -58,6 +58,94 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------------------
+    // 4. Hero Carousel System (3s rotation, preload & fallback a fondo verde)
+    // -------------------------------------------------------------------------
+    const heroCarouselImages = [
+        'imagenes/photo_2026-11-18_16-37-37.jpg',
+        'imagenes/photo_2026-11-18_16-37-37 (2).jpg',
+        'imagenes/photo_2026-11-18_16-37-37 (3).jpg'
+    ];
+
+    const heroSlides = document.querySelectorAll('.hero-carousel-slide');
+    const introSlide = document.getElementById('introCarouselSlide');
+    const loadedSlideIndices = new Set();
+    let currentHeroSlide = 0;
+    let heroCarouselTimer = null;
+    let isWindowActive = !document.hidden;
+
+    function markSlideAsLoaded(index) {
+        loadedSlideIndices.add(index);
+        if (index === 0 && introSlide) {
+            introSlide.classList.add('is-loaded');
+        }
+        if (heroSlides[index]) {
+            heroSlides[index].classList.add('is-loaded');
+        }
+    }
+
+    // Precargar las 3 imágenes empezando por la primera (para la animación de aparición)
+    function preloadHeroImages() {
+        heroCarouselImages.forEach((src, idx) => {
+            const img = new Image();
+            img.onload = () => markSlideAsLoaded(idx);
+            img.onerror = () => {
+                // Fallback automático: permanece sin clase .is-loaded mostrando el fondo verde original
+                console.warn(`[Hero Carousel] Fallo al cargar imagen ${idx + 1}: ${src}`);
+            };
+            img.src = src;
+            // Si la imagen ya fue cargada por el navegador (ej: <link rel="preload"> o caché)
+            if (img.complete && img.naturalWidth > 0) {
+                markSlideAsLoaded(idx);
+            }
+        });
+    }
+
+    function goToHeroSlide(nextIndex) {
+        if (!heroSlides || heroSlides.length === 0) return;
+        heroSlides.forEach((slide, idx) => {
+            if (idx === nextIndex) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        currentHeroSlide = nextIndex;
+    }
+
+    function advanceHeroSlide() {
+        if (!isWindowActive || !heroSlides || heroSlides.length === 0) return;
+        const nextIndex = (currentHeroSlide + 1) % heroSlides.length;
+        goToHeroSlide(nextIndex);
+    }
+
+    function startHeroCarousel() {
+        if (heroCarouselTimer) clearInterval(heroCarouselTimer);
+        // Ciclo exacto de 3 segundos por imagen
+        heroCarouselTimer = setInterval(advanceHeroSlide, 3000);
+    }
+
+    function pauseHeroCarousel() {
+        if (heroCarouselTimer) {
+            clearInterval(heroCarouselTimer);
+            heroCarouselTimer = null;
+        }
+    }
+
+    // Pausar rotación si el usuario minimiza o cambia de pestaña
+    document.addEventListener('visibilitychange', () => {
+        isWindowActive = !document.hidden;
+        if (isWindowActive) {
+            startHeroCarousel();
+        } else {
+            pauseHeroCarousel();
+        }
+    });
+
+    // Iniciar precarga inmediata y activar ciclo de 3 segundos
+    preloadHeroImages();
+    startHeroCarousel();
+
+    // -------------------------------------------------------------------------
     // 5. Modal System
     // -------------------------------------------------------------------------
     const infoModal = document.getElementById('infoModal');

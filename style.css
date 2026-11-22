@@ -252,6 +252,40 @@ body.dark-theme .intro-backdrop {
     background: radial-gradient(circle at 50% 45%, #1b422a 0%, #11291b 55%, #08140c 100%);
 }
 
+/* Carrusel de Fondo en la Intro (con fallback instantáneo al fondo verde) */
+.intro-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.intro-carousel-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.intro-carousel-slide.is-loaded {
+    opacity: 1;
+}
+
+.intro-carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(22, 58, 38, 0.58) 0%, rgba(12, 30, 20, 0.82) 100%);
+    pointer-events: none;
+}
+
+body.dark-theme .intro-carousel-overlay {
+    background: radial-gradient(circle at 50% 45%, rgba(12, 32, 21, 0.72) 0%, rgba(6, 16, 11, 0.92) 100%);
+}
+
 .intro-bg-shapes {
     position: absolute;
     inset: 0;
@@ -533,12 +567,57 @@ body.dark-theme .moon-icon {
     text-align: center;
 }
 
+/* ==========================================================================
+   Hero Image Carousel (Ciclo 3s, precarga y fallback automático a fondo verde)
+   ========================================================================== */
+.hero-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.hero-carousel-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 5s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Solo se vuelve visible si es la activa Y completó su carga con éxito.
+   Si aún no ha terminado de cargar, permanece con opacity: 0 mostrando el fondo verde */
+.hero-carousel-slide.active.is-loaded {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+/* Capa de armonización verde y alto contraste para legibilidad perfecta del título */
+.hero-carousel-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(18, 48, 30, 0.65) 0%, rgba(32, 78, 50, 0.46) 50%, rgba(14, 38, 24, 0.70) 100%);
+    pointer-events: none;
+}
+
+body.dark-theme .hero-carousel-overlay {
+    background: linear-gradient(135deg, rgba(8, 24, 15, 0.78) 0%, rgba(18, 48, 30, 0.62) 50%, rgba(6, 18, 12, 0.85) 100%);
+}
+
 /* Background decorative geometry */
 .hero-bg-shapes {
     position: absolute;
     inset: 0;
     pointer-events: none;
     overflow: hidden;
+    z-index: 3;
 }
 
 .circle-decoration {
@@ -566,7 +645,7 @@ body.dark-theme .moon-icon {
 /* Central Content: Condominio RESIDENCIA CANAIMA - Posición centrada equilibrada */
 .hero-center-content {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -580,7 +659,8 @@ body.dark-theme .moon-icon {
     font-weight: 600;
     letter-spacing: clamp(3px, 0.35vw, 5px);
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-main-title {
@@ -591,7 +671,7 @@ body.dark-theme .moon-icon {
     letter-spacing: clamp(1.8px, 0.22vw, 3.2px);
     text-transform: uppercase;
     line-height: 1.15;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 35px rgba(130, 215, 165, 0.4);
 }
 
 /* ==========================================================================
