@@ -13,7 +13,10 @@
 </head>
 <body>
 
-    <main class="months-page">
+    <!-- Fondo Dinámico Natural (Hojas y Brisa de Canaima) -->
+    <canvas id="natureCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" aria-hidden="true"></canvas>
+
+    <main class="months-page" style="position:relative;z-index:1;">
 
         <header class="page-header">
             <p class="eyebrow">RESIDENCIA CANAIMA</p>
@@ -246,6 +249,187 @@
             actualizarMeses();
 
         });
+    </script>
+    <script>
+        // ── Fondo de Hojas Naturales (mismo motor que el index raíz) ──────────
+        (function () {
+            const canvas = document.getElementById('natureCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            let width, height, dpr;
+            let isVisible = true;
+
+            const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let isReducedMotion = motionQuery.matches;
+            motionQuery.addEventListener('change', e => { isReducedMotion = e.matches; });
+
+            const leafPalettesLight = [
+                { fill: 'rgba(56, 123, 85, 0.48)',  vein: 'rgba(255,255,255,0.55)' },
+                { fill: 'rgba(77, 154, 110, 0.45)', vein: 'rgba(255,255,255,0.50)' },
+                { fill: 'rgba(102,178,134, 0.40)',  vein: 'rgba(255,255,255,0.60)' },
+                { fill: 'rgba(45, 107, 71, 0.52)',  vein: 'rgba(255,255,255,0.45)' },
+                { fill: 'rgba(130,196,158, 0.42)',  vein: 'rgba(255,255,255,0.65)' }
+            ];
+            const leafPalettesDark = [
+                { fill: 'rgba(62, 136, 93, 0.42)',  vein: 'rgba(168,230,195,0.40)' },
+                { fill: 'rgba(45, 112, 75, 0.45)',  vein: 'rgba(140,220,175,0.35)' },
+                { fill: 'rgba(82, 163,119, 0.40)',  vein: 'rgba(180,245,205,0.45)' },
+                { fill: 'rgba(32,  85, 55, 0.48)',  vein: 'rgba(130,210,165,0.30)' },
+                { fill: 'rgba(109,182,141, 0.38)',  vein: 'rgba(200,255,220,0.50)' }
+            ];
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width  = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width  = Math.floor(width  * dpr);
+                canvas.height = Math.floor(height * dpr);
+                canvas.style.width  = width  + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            window.addEventListener('resize', resize, { passive: true });
+            resize();
+
+            const mouse = { x: -1000, y: -1000, vx: 0, vy: 0, lastX: 0, lastY: 0, lastTime: Date.now() };
+            function updateMouse(cx, cy) {
+                const now = Date.now();
+                const dt  = Math.max(now - mouse.lastTime, 16);
+                mouse.vx = Math.max(-12, Math.min(12, ((cx - mouse.lastX) / dt) * 8));
+                mouse.vy = Math.max(-12, Math.min(12, ((cy - mouse.lastY) / dt) * 8));
+                mouse.x = cx; mouse.y = cy;
+                mouse.lastX = cx; mouse.lastY = cy; mouse.lastTime = now;
+            }
+            window.addEventListener('mousemove', e => updateMouse(e.clientX, e.clientY), { passive: true });
+            window.addEventListener('touchmove', e => { if (e.touches[0]) updateMouse(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+
+            class Leaf {
+                constructor(init) { this.vx = 0; this.vy = 0; this.reset(init); }
+                reset(init) {
+                    const mob = width < 768;
+                    this.size = mob ? (9 + Math.random() * 9) : (11 + Math.random() * 13);
+                    if (init) {
+                        this.x = Math.random() * (width + 100) - 50;
+                        this.y = Math.random() * (height + 100) - 50;
+                    } else if (Math.random() < 0.65) {
+                        this.x = Math.random() * (width + 60) - 30;
+                        this.y = -this.size * 2 - Math.random() * 40;
+                    } else {
+                        this.x = -this.size * 2 - Math.random() * 40;
+                        this.y = Math.random() * (height * 0.7);
+                    }
+                    this.speedY   = 0.35 + Math.random() * 0.55;
+                    this.speedX   = 0.25 + Math.random() * 0.50;
+                    this.swayAmp  = 18  + Math.random() * 26;
+                    this.swayFreq = 0.007 + Math.random() * 0.010;
+                    this.swayPhase= Math.random() * Math.PI * 2;
+                    this.flipPhase= Math.random() * Math.PI * 2;
+                    this.flipSpeed= 0.016 + Math.random() * 0.024;
+                    this.rotation = (Math.random() - 0.5) * 0.8;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.008;
+                    this.paletteIndex = Math.floor(Math.random() * 5);
+                }
+                update() {
+                    if (isReducedMotion) return;
+                    const dx = this.x - mouse.x, dy = this.y - mouse.y;
+                    const dSq = dx*dx + dy*dy, maxD = 130;
+                    if (dSq < maxD*maxD && dSq > 0) {
+                        const d = Math.sqrt(dSq), f = (1 - d/maxD) * 1.8;
+                        this.vx += (dx/d)*f + mouse.vx*0.15;
+                        this.vy += (dy/d)*f + mouse.vy*0.15;
+                    }
+                    this.vx *= 0.94; this.vy *= 0.94;
+                    this.swayPhase += this.swayFreq;
+                    this.flipPhase += this.flipSpeed;
+                    this.rotation  += this.rotSpeed;
+                    this.x += this.speedX + Math.sin(this.swayPhase)*0.6 + this.vx;
+                    this.y += this.speedY + this.vy;
+                    if (this.y > height + this.size*2 || this.x > width + this.size*2) this.reset(false);
+                }
+                draw(isDark) {
+                    const p = (isDark ? leafPalettesDark : leafPalettesLight)[this.paletteIndex];
+                    const flip = Math.sin(this.flipPhase);
+                    ctx.save();
+                    ctx.translate(this.x + Math.sin(this.swayPhase)*this.swayAmp*0.15, this.y);
+                    ctx.rotate(this.rotation);
+                    ctx.scale(Math.max(Math.abs(flip), 0.12) * Math.sign(flip || 1), 1);
+                    const s = this.size;
+                    ctx.beginPath();
+                    ctx.moveTo(0, -s);
+                    ctx.bezierCurveTo( s*0.55,-s*0.45, s*0.55, s*0.45, 0, s);
+                    ctx.bezierCurveTo(-s*0.55, s*0.45,-s*0.55,-s*0.45, 0,-s);
+                    ctx.fillStyle = p.fill; ctx.fill();
+                    ctx.beginPath();
+                    ctx.moveTo(0,-s*0.85); ctx.lineTo(0, s*0.88);
+                    ctx.strokeStyle = p.vein; ctx.lineWidth = Math.max(0.65, s*0.06); ctx.stroke();
+                    if (s > 14) {
+                        ctx.beginPath();
+                        ctx.moveTo(0,-s*0.25); ctx.lineTo( s*0.28,-s*0.42);
+                        ctx.moveTo(0,-s*0.25); ctx.lineTo(-s*0.28,-s*0.42);
+                        ctx.moveTo(0, s*0.22); ctx.lineTo( s*0.26, s*0.06);
+                        ctx.moveTo(0, s*0.22); ctx.lineTo(-s*0.26, s*0.06);
+                        ctx.lineWidth = Math.max(0.45, s*0.04); ctx.stroke();
+                    }
+                    ctx.restore();
+                }
+            }
+
+            class Spore {
+                constructor(init) { this.reset(init); }
+                reset(init) {
+                    this.x = Math.random() * width;
+                    this.y = init ? Math.random() * height : height + 10 + Math.random() * 30;
+                    this.radius = 1.2 + Math.random() * 2.2;
+                    this.speedY = -(0.25 + Math.random() * 0.45);
+                    this.speedX = (Math.random() - 0.4) * 0.35;
+                    this.pulseSpeed = 0.02 + Math.random() * 0.03;
+                    this.pulsePhase = Math.random() * Math.PI * 2;
+                    this.baseAlpha  = 0.25 + Math.random() * 0.35;
+                }
+                update() {
+                    if (isReducedMotion) return;
+                    this.pulsePhase += this.pulseSpeed;
+                    this.y += this.speedY;
+                    this.x += this.speedX + Math.sin(this.pulsePhase) * 0.3;
+                    if (this.y < -20 || this.x < -20 || this.x > width + 20) this.reset(false);
+                }
+                draw(isDark) {
+                    const pulse = (Math.sin(this.pulsePhase) + 1) * 0.5;
+                    const alpha = this.baseAlpha * (0.6 + pulse * 0.4);
+                    ctx.save();
+                    if (isDark) {
+                        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3.2);
+                        g.addColorStop(0,    `rgba(180,245,205,${alpha})`);
+                        g.addColorStop(0.35, `rgba(102,217,150,${alpha*0.65})`);
+                        g.addColorStop(1,    'rgba(40,140,85,0)');
+                        ctx.fillStyle = g;
+                        ctx.beginPath(); ctx.arc(this.x, this.y, this.radius*3.2, 0, Math.PI*2); ctx.fill();
+                    } else {
+                        ctx.fillStyle = `rgba(90,175,125,${alpha*0.75})`;
+                        ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); ctx.fill();
+                    }
+                    ctx.restore();
+                }
+            }
+
+            const mob = window.innerWidth < 768;
+            const leaves = Array.from({ length: mob ? 16 : 28 }, () => new Leaf(true));
+            const spores = Array.from({ length: mob ? 12 : 22 }, () => new Spore(true));
+
+            document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isVisible) return;
+                const isDark = document.body.classList.contains('dark-theme');
+                ctx.clearRect(0, 0, width, height);
+                spores.forEach(s => { s.update(); s.draw(isDark); });
+                leaves.forEach(l => { l.update();  l.draw(isDark); });
+            }
+            animate();
+        })();
     </script>
 
 </body>
