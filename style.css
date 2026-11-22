@@ -988,8 +988,16 @@ body.dark-theme .char-thumb {
 
     .search-tag {
         flex: none;
+        min-height: 46px;
+        padding: 12px 18px;
+        font-size: 15px;
         justify-content: center;
         text-align: center;
+    }
+
+    .search-tag .search-icon {
+        width: 18px;
+        height: 18px;
     }
 
     .stickers-col {
@@ -1047,9 +1055,21 @@ body.dark-theme .char-thumb {
         border-bottom: 1px solid var(--card-border);
     }
 
+    .search-tags-list {
+        gap: 12px;
+    }
+
     .search-tag {
+        min-height: 52px;
+        padding: 14px 20px;
+        font-size: 16px;
         justify-content: center;
         text-align: center;
+    }
+
+    .search-tag .search-icon {
+        width: 20px;
+        height: 20px;
     }
 
     .stickers-col {
