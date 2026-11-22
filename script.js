@@ -525,4 +525,95 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initNatureBackground();
+
+    // -------------------------------------------------------------------------
+    // 8. Animación de Entrada Pantalla Completa ("Encaje Perfecto")
+    // -------------------------------------------------------------------------
+    function initIntroAnimation() {
+        const introOverlay = document.getElementById('introOverlay');
+        const introContent = document.getElementById('introContent');
+        const introTitle = introContent ? introContent.querySelector('.intro-title') : null;
+        const heroCenter = document.querySelector('.hero-center-content');
+        const heroTitle = document.querySelector('.hero-main-title');
+
+        if (!introOverlay || !introContent || !heroCenter || !heroTitle) {
+            document.body.classList.remove('intro-active');
+            document.body.classList.add('buttons-entered');
+            return;
+        }
+
+        // Respetar preferencia de movimiento reducido
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.body.classList.remove('intro-active');
+            document.body.classList.add('buttons-entered');
+            introOverlay.style.display = 'none';
+            return;
+        }
+
+        // Bloquear desplazamiento mientras dura la intro
+        document.body.classList.add('intro-active');
+        window.scrollTo(0, 0);
+
+        async function startDocking() {
+            // Asegurar que las fuentes web estén listas para mediciones exactas
+            if (document.fonts && document.fonts.ready) {
+                try {
+                    await document.fonts.ready;
+                } catch (e) {}
+            }
+
+            // Duración de la presentación en pantalla completa antes del encaje
+            setTimeout(() => {
+                // Medir posiciones en coordenadas del viewport
+                const heroTitleRect = heroTitle.getBoundingClientRect();
+                const introTitleRect = introTitle.getBoundingClientRect();
+
+                if (!heroTitleRect.width || !introTitleRect.width) {
+                    finishIntro();
+                    return;
+                }
+
+                const heroCenterX = heroTitleRect.left + heroTitleRect.width / 2;
+                const heroCenterY = heroTitleRect.top + heroTitleRect.height / 2;
+                const introCenterX = introTitleRect.left + introTitleRect.width / 2;
+                const introCenterY = introTitleRect.top + introTitleRect.height / 2;
+
+                const deltaX = heroCenterX - introCenterX;
+                const deltaY = heroCenterY - introCenterY;
+                let scale = heroTitleRect.width / introTitleRect.width;
+                if (Math.abs(scale - 1) < 0.05) {
+                    scale = 1;
+                }
+
+                // Iniciar transición de encaje
+                introOverlay.classList.add('docking');
+                introContent.style.transform = `translate3d(${deltaX.toFixed(2)}px, ${deltaY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+
+                // Concluir cuando termine la animación de desplazamiento y disparar aparición de botones
+                setTimeout(finishIntro, 850);
+            }, 1250);
+        }
+
+        function finishIntro() {
+            // Revelar el título estático de la tarjeta hero
+            heroCenter.style.opacity = '1';
+
+            // Desvanecer suavemente el clon de la intro para una transición 100% natural sin saltos
+            introContent.style.transition = 'opacity 0.2s ease';
+            introContent.style.opacity = '0';
+
+            document.body.classList.remove('intro-active');
+            // Activa el efecto de aparición de los botones
+            document.body.classList.add('buttons-entered');
+
+            setTimeout(() => {
+                introOverlay.classList.add('finished');
+                introOverlay.style.display = 'none';
+            }, 200);
+        }
+
+        startDocking();
+    }
+
+    initIntroAnimation();
 });
