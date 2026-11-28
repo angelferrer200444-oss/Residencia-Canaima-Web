@@ -226,12 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const noticiasPrevBtn = document.getElementById('noticiasPrevBtn');
     const noticiasNextBtn = document.getElementById('noticiasNextBtn');
     let currentNoticiaIndex = 0;
-    const maxIndex = Math.max(0, noticiasData.length - 2);
+    const maxIndex = Math.max(0, noticiasData.length - 1);
 
     function updateCarouselPosition() {
         if (!noticiasTrack || !noticiasViewport) return;
         const firstCard = noticiasTrack.querySelector('.scene-card');
-        const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : (noticiasViewport.clientWidth - 8) / 2;
+        const cardWidth = firstCard ? firstCard.offsetWidth : noticiasViewport.clientWidth;
         const gap = 8;
         const shift = currentNoticiaIndex * (cardWidth + gap);
         noticiasTrack.style.transform = `translateX(-${shift}px)`;

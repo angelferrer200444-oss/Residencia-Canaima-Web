@@ -716,7 +716,7 @@ body.dark-theme .hero-carousel-overlay {
 }
 
 /* --------------------------------------------------------------------------
-   Column 1: Noticias (Carrusel: estrictamente 2 tarjetas visibles)
+   Column 1: Noticias (Carrusel: estrictamente 1 tarjeta visible)
    -------------------------------------------------------------------------- */
 .anime-scene-col {
     gap: 10px;
@@ -762,7 +762,7 @@ body.dark-theme .hero-carousel-overlay {
     flex: 1 1 0;
     min-width: 0; /* Impide que el contenedor se expanda */
     max-width: 100%;
-    overflow: hidden; /* Oculta rigurosamente cualquier tarjeta más allá de las 2 visibles */
+    overflow: hidden; /* Oculta rigurosamente cualquier tarjeta más allá de la visible */
     border-radius: var(--radius-card);
     height: 100%;
     display: flex;
@@ -779,10 +779,10 @@ body.dark-theme .hero-carousel-overlay {
 }
 
 .scene-card {
-    /* Exactamente el 50% del viewport menos la mitad del gap para mostrar solo 2 */
-    flex: 0 0 calc((100% - 8px) / 2);
-    width: calc((100% - 8px) / 2);
-    max-width: calc((100% - 8px) / 2);
+    /* Exactamente el 100% del viewport para mostrar 1 tarjeta ocupando el espacio de 2 */
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
     height: 100%;
     min-height: clamp(142px, 17.5vh, 170px);
     flex-shrink: 0;
