@@ -224,6 +224,7 @@ body.intro-active .scene-card,
 body.intro-active .view-more-btn,
 body.intro-active .search-tag,
 body.intro-active .sticker-card,
+body.intro-active .normas-carousel-wrapper,
 body.intro-active .character-card {
     opacity: 0 !important;
     animation: none !important;
