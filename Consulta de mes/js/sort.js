@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    const { cerrarMenusDesplegables, vincularCierreMenus } = window.CanaimaGastos;
+
     // Marcar el orden por defecto (fecha: más antiguo → más reciente)
     boton.classList.add("is-active");
     const opcionPorDefecto = menu.querySelector('.sort-option[data-sort="fecha-asc"]');
@@ -18,37 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ABRIR Y CERRAR EL MENÚ
     // ========================================
 
-    boton.addEventListener("click", () => {
-
+    boton.addEventListener("click", (e) => {
+        e.stopPropagation();
         const abierto = !menu.hidden;
-
+        cerrarMenusDesplegables(null);
         menu.hidden = abierto;
         boton.setAttribute("aria-expanded", String(!abierto));
-
     });
 
-    // Cerrar al hacer clic fuera del menú.
-    document.addEventListener("click", evento => {
-
-        if (!boton.contains(evento.target) &&
-            !menu.contains(evento.target)) {
-
-            menu.hidden = true;
-            boton.setAttribute("aria-expanded", "false");
-
-        }
-
-    });
-
-    // Cerrar con Escape.
-    document.addEventListener("keydown", evento => {
-
-        if (evento.key === "Escape") {
-            menu.hidden = true;
-            boton.setAttribute("aria-expanded", "false");
-        }
-
-    });
+    vincularCierreMenus();
 
     // ========================================
     // CONVERTIR CIFRAS A NÚMEROS

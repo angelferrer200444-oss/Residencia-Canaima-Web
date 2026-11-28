@@ -12,6 +12,13 @@
 
         canvas.dataset.natureInitialized = 'true';
 
+        if (!canvas.classList.contains('nature-canvas')) {
+            canvas.style.position = 'fixed';
+            canvas.style.inset = '0';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '0';
+        }
+
         let width = 0;
         let height = 0;
         let dpr = 1;
@@ -263,9 +270,7 @@
             requestAnimationFrame(animate);
             if (!isVisible) return;
 
-            const isDark =
-                document.documentElement.getAttribute('data-theme') === 'dark' ||
-                document.body.classList.contains('dark-theme');
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             ctx.clearRect(0, 0, width, height);
 
             for (let i = 0; i < spores.length; i++) {

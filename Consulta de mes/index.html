@@ -10,17 +10,16 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/search.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/sort.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
-    <script src="js/dark-mode.js"></script>
+    <script src="../theme.js"></script>
 </head>
 
 <body>
 
     <!-- Fondo Dinámico Natural (Hojas y Brisa de Canaima) -->
-    <canvas id="natureCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" aria-hidden="true"></canvas>
+    <canvas id="natureCanvas" aria-hidden="true"></canvas>
 
     <main class="page" style="position:relative;z-index:1;">
 
@@ -61,22 +60,7 @@
 
                         </button>
 
-                        <div class="period-select-menu" id="mes-select-menu" hidden>
-
-                            <button type="button" class="period-select-option" data-value="enero">Enero</button>
-                            <button type="button" class="period-select-option" data-value="febrero">Febrero</button>
-                            <button type="button" class="period-select-option" data-value="marzo">Marzo</button>
-                            <button type="button" class="period-select-option" data-value="abril">Abril</button>
-                            <button type="button" class="period-select-option" data-value="mayo">Mayo</button>
-                            <button type="button" class="period-select-option" data-value="junio">Junio</button>
-                            <button type="button" class="period-select-option" data-value="julio">Julio</button>
-                            <button type="button" class="period-select-option" data-value="agosto">Agosto</button>
-                            <button type="button" class="period-select-option" data-value="septiembre">Septiembre</button>
-                            <button type="button" class="period-select-option" data-value="octubre">Octubre</button>
-                            <button type="button" class="period-select-option" data-value="noviembre">Noviembre</button>
-                            <button type="button" class="period-select-option" data-value="diciembre">Diciembre</button>
-
-                        </div>
+                        <div class="period-select-menu" id="mes-select-menu" hidden></div>
 
                     </div>
 
@@ -95,20 +79,7 @@
 
                         </button>
 
-                        <div class="period-select-menu" id="anio-select-menu" hidden>
-
-                            <button type="button" class="period-select-option" data-value="2026">2026</button>
-                            <button type="button" class="period-select-option" data-value="2027">2027</button>
-                            <button type="button" class="period-select-option" data-value="2028">2028</button>
-                            <button type="button" class="period-select-option" data-value="2029">2029</button>
-                            <button type="button" class="period-select-option" data-value="2030">2030</button>
-                            <button type="button" class="period-select-option" data-value="2031">2031</button>
-                            <button type="button" class="period-select-option" data-value="2032">2032</button>
-                            <button type="button" class="period-select-option" data-value="2033">2033</button>
-                            <button type="button" class="period-select-option" data-value="2034">2034</button>
-                            <button type="button" class="period-select-option" data-value="2035">2035</button>
-
-                        </div>
+                        <div class="period-select-menu" id="anio-select-menu" hidden></div>
 
                     </div>
 
@@ -251,6 +222,7 @@
     </main>
 
 
+    <script src="js/shared.js"></script>
     <script src="js/script.js"></script>
     <script src="js/search.js"></script>
     <script src="js/sort.js"></script>

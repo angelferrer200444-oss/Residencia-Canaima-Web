@@ -4,15 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // CONFIGURACIÓN
     // ========================================
 
+    const {
+        MESES,
+        MESES_VALIDOS,
+        obtenerTipoValido,
+        obtenerAnioValido,
+        cerrarMenusDesplegables,
+        vincularCierreMenus
+    } = window.CanaimaGastos;
+
     const parametros = new URLSearchParams(window.location.search);
-
-    const tiposPermitidos = ["bolivares", "divisas", "daru"];
-
-    let tipo = parametros.get("tipo") || "bolivares";
-
-    if (!tiposPermitidos.includes(tipo)) {
-        tipo = "bolivares";
-    }
+    const tipo = obtenerTipoValido(parametros);
 
     const ARCHIVOS = {
         bolivares: "./js/datos.txt",
@@ -21,44 +23,42 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const CONFIGURACIONES = {
-
         bolivares: {
-            columnas: [
-                "Fecha",
-                "Descripción",
-                "Ingreso",
-                "Egreso",
-                "Saldo",
-                "Tasa",
-                "Factura"
-            ],
+            nombre: "Bolívares",
+            columnas: ["Fecha", "Descripción", "Ingreso", "Egreso", "Saldo", "Tasa", "Factura"],
             cantidad: 7,
-            resumen: true
+            resumen: true,
+            minDatos: 6,
+            maxDatos: 7,
+            camposTexto: 6,
+            indiceFactura: 6,
+            ocultarCeros: true,
+            tieneNumeros: true
         },
-
         divisas: {
-            columnas: [
-                "Fecha",
-                "Descripción",
-                "Ingreso",
-                "Egreso",
-                "Saldo",
-                "Factura"
-            ],
+            nombre: "Divisas",
+            columnas: ["Fecha", "Descripción", "Ingreso", "Egreso", "Saldo", "Factura"],
             cantidad: 6,
-            resumen: true
+            resumen: true,
+            minDatos: 6,
+            maxDatos: 6,
+            camposTexto: 5,
+            indiceFactura: 5,
+            ocultarCeros: true,
+            tieneNumeros: true
         },
-
         daru: {
-            columnas: [
-                "Fecha",
-                "Descripción",
-                "Factura"
-            ],
+            nombre: "DARU",
+            columnas: ["Fecha", "Descripción", "Factura"],
             cantidad: 3,
-            resumen: false
+            resumen: false,
+            minDatos: 3,
+            maxDatos: 3,
+            camposTexto: 2,
+            indiceFactura: 2,
+            ocultarCeros: false,
+            tieneNumeros: false
         }
-
     };
 
     const configuracion = CONFIGURACIONES[tipo];
@@ -67,29 +67,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const encabezados = document.getElementById("ledger-headers");
     const resumen = document.querySelectorAll(".summary-item strong");
     const seccionResumen = document.querySelector(".summary-section");
-
-    const opcionesIngreso = document.querySelectorAll(
-        '[data-sort="ingresos"], [data-sort="egresos"]'
-    );
+    const opcionesIngreso = document.querySelectorAll('[data-sort="ingresos"], [data-sort="egresos"]');
 
     let mesSel = parametros.get("mes") || "febrero";
-    let anioSel = parametros.get("anio") || "2026";
-
-    const mesesValidos = [
-        "enero", "febrero", "marzo", "abril",
-        "mayo", "junio", "julio", "agosto",
-        "septiembre", "octubre", "noviembre", "diciembre"
-    ];
-
-    if (!mesesValidos.includes(mesSel)) {
+    if (!MESES_VALIDOS.includes(mesSel)) {
         mesSel = "febrero";
     }
 
-    if (!/^\d{4}$/.test(anioSel)) {
-        anioSel = "2026";
+    let anioSel = String(obtenerAnioValido(parametros.get("anio"), 2026));
+    let lineasCache = [];
+
+
+    // ========================================
+    // UTILIDADES DE DATOS Y UI
+    // ========================================
+
+    function parsearLinea(linea) {
+        return linea.split(";").map((dato) => dato.trim());
     }
 
-    let lineasCache = [];
+    function limpiarResumen() {
+        if (!configuracion.resumen || !resumen) return;
+        resumen.forEach((item) => {
+            item.textContent = "—";
+        });
+    }
+
+    function poblarOpcionesPeriodo() {
+        const mesMenu = document.getElementById("mes-select-menu");
+        const anioMenu = document.getElementById("anio-select-menu");
+
+        if (mesMenu) {
+            mesMenu.innerHTML = MESES.map(
+                (m) => `<button type="button" class="period-select-option" data-value="${m.value}">${m.label}</button>`
+            ).join("");
+        }
+
+        if (anioMenu) {
+            const anios = Array.from({ length: 10 }, (_, idx) => 2026 + idx);
+            anioMenu.innerHTML = anios.map(
+                (anio) => `<button type="button" class="period-select-option" data-value="${anio}">${anio}</button>`
+            ).join("");
+        }
+    }
 
 
     // ========================================
@@ -97,15 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     function configurarInterfaz() {
-
-        // Crear encabezados de la tabla
-
         encabezados.innerHTML = "";
 
-        configuracion.columnas.forEach((nombre, indice) => {
-
+        configuracion.columnas.forEach((nombre) => {
             const th = document.createElement("th");
-
             th.textContent = nombre;
 
             if (
@@ -118,41 +133,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             encabezados.appendChild(th);
-
         });
-
-
-        // Ocultar resumen en DARU
 
         if (seccionResumen) {
-            seccionResumen.style.display =
-                configuracion.resumen ? "" : "none";
+            seccionResumen.style.display = configuracion.resumen ? "" : "none";
         }
 
-
-        // Ocultar ordenamientos que no corresponden a DARU
-
-        opcionesIngreso.forEach(opcion => {
-
-            opcion.style.display =
-                tipo === "daru" ? "none" : "";
-
+        opcionesIngreso.forEach((opcion) => {
+            opcion.style.display = tipo === "daru" ? "none" : "";
         });
 
+        document.title = `Residencia Canaima | Gastos ${configuracion.nombre}`;
 
-        // Actualizar título del documento
-
-        const nombres = {
-            bolivares: "Bolívares",
-            divisas: "Divisas",
-            daru: "DARU"
-        };
-
-        document.title =
-            `Residencia Canaima | Gastos ${nombres[tipo]}`;
-
+        poblarOpcionesPeriodo();
         actualizarBotonesPeriodo();
-
     }
 
 
@@ -161,46 +155,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     function actualizarBotonesPeriodo() {
-
-        const mesBtn = document.querySelector(
-            "#mes-select-btn .period-select-text"
-        );
-
-        const anioBtn = document.querySelector(
-            "#anio-select-btn .period-select-text"
-        );
+        const mesBtn = document.querySelector("#mes-select-btn .period-select-text");
+        const anioBtn = document.querySelector("#anio-select-btn .period-select-text");
 
         if (mesBtn) {
-            mesBtn.textContent =
-                mesSel.charAt(0).toUpperCase() + mesSel.slice(1);
+            mesBtn.textContent = mesSel.charAt(0).toUpperCase() + mesSel.slice(1);
         }
 
         if (anioBtn) {
             anioBtn.textContent = anioSel;
         }
 
-        document.querySelectorAll(
-            "#mes-select-menu .period-select-option"
-        ).forEach(opcion => {
-
-            opcion.classList.toggle(
-                "is-selected",
-                opcion.dataset.value === mesSel
-            );
-
+        document.querySelectorAll("#mes-select-menu .period-select-option").forEach((opcion) => {
+            opcion.classList.toggle("is-selected", opcion.dataset.value === mesSel);
         });
 
-        document.querySelectorAll(
-            "#anio-select-menu .period-select-option"
-        ).forEach(opcion => {
-
-            opcion.classList.toggle(
-                "is-selected",
-                opcion.dataset.value === anioSel
-            );
-
+        document.querySelectorAll("#anio-select-menu .period-select-option").forEach((opcion) => {
+            opcion.classList.toggle("is-selected", opcion.dataset.value === anioSel);
         });
-
     }
 
 
@@ -209,29 +181,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     function mostrarMensaje(mensaje) {
-
         tabla.innerHTML = "";
-
         const fila = document.createElement("tr");
         fila.classList.add("empty-row");
 
         const celda = document.createElement("td");
-
         celda.colSpan = configuracion.cantidad;
         celda.textContent = mensaje;
 
         fila.appendChild(celda);
         tabla.appendChild(fila);
-
     }
 
 
     // ========================================
-    // MOSTRAR FACTURA
+    // MOSTRAR FACTURA Y MOVIMIENTOS
     // ========================================
 
     function crearCeldaFactura(valor) {
-
         const celda = document.createElement("td");
         celda.classList.add("invoice-cell");
 
@@ -240,188 +207,70 @@ document.addEventListener("DOMContentLoaded", () => {
             return celda;
         }
 
-        // Solo convertir en enlace si parece una dirección válida
-
-        const pareceURL =
-            /^(https?:\/\/|\.{0,2}\/|[\w-]+\/)/i.test(valor);
-
+        const pareceURL = /^(https?:\/\/|\.{0,2}\/|[\w-]+\/)/i.test(valor);
         if (pareceURL) {
-
             const enlace = document.createElement("a");
-
             enlace.href = valor;
             enlace.textContent = "Ver factura";
             enlace.target = "_blank";
             enlace.rel = "noopener noreferrer";
-
             celda.appendChild(enlace);
-
         } else {
-
             celda.textContent = valor;
-
         }
 
         return celda;
-
     }
 
+    function crearFilaMovimiento(datos) {
+        if (datos.length < configuracion.minDatos || datos.length > configuracion.maxDatos) {
+            return null;
+        }
 
-    // ========================================
-    // MOSTRAR MOVIMIENTOS
-    // ========================================
+        const fila = document.createElement("tr");
+        for (let i = 0; i < configuracion.camposTexto; i++) {
+            const celda = document.createElement("td");
+            const valor = datos[i];
+            celda.textContent = (configuracion.ocultarCeros && (valor === "0" || valor === "—")) ? "" : valor;
+            if (configuracion.tieneNumeros && i >= 2) {
+                celda.classList.add("number");
+            }
+            fila.appendChild(celda);
+        }
+
+        fila.appendChild(crearCeldaFactura(datos[configuracion.indiceFactura] || ""));
+        return fila;
+    }
 
     function mostrarMovimientos(lineas) {
-
         tabla.innerHTML = "";
 
-        const movimientos = lineas.filter(linea => {
-
-            const datos = linea.split(";").map(
-                dato => dato.trim()
-            );
-
-            return (
-                datos[0] !== "CIERRE" &&
-                datos[0] !== "RESUMEN"
-            );
-
+        const movimientos = lineas.filter((linea) => {
+            const datos = parsearLinea(linea);
+            return datos[0] !== "CIERRE" && datos[0] !== "RESUMEN";
         });
 
         if (movimientos.length === 0) {
-
-            mostrarMensaje(
-                "Todavía no hay movimientos registrados."
-            );
-
+            mostrarMensaje("Todavía no hay movimientos registrados.");
             return;
-
         }
 
         let movimientosValidos = 0;
 
-        movimientos.forEach(linea => {
-
-            const datos = linea.split(";").map(
-                dato => dato.trim()
-            );
-
-            const fila = document.createElement("tr");
-
-            let valores = [];
-
-            // BOLÍVARES
-
-            if (tipo === "bolivares") {
-
-                if (datos.length < 6 || datos.length > 7) {
-                    console.warn("Línea ignorada:", linea);
-                    return;
-                }
-
-                valores = [
-                    datos[0],
-                    datos[1],
-                    datos[2],
-                    datos[3],
-                    datos[4],
-                    datos[5]
-                ];
-
-                valores.forEach((valor, indice) => {
-
-                    const celda = document.createElement("td");
-
-                    celda.textContent =
-                        (valor === "0" || valor === "—") ? "" : valor;
-
-                    if (indice >= 2) {
-                        celda.classList.add("number");
-                    }
-
-                    fila.appendChild(celda);
-
-                });
-
-                // La séptima columna es la factura, si existe
-
-                fila.appendChild(
-                    crearCeldaFactura(datos[6] || "")
-                );
-
+        movimientos.forEach((linea) => {
+            const datos = parsearLinea(linea);
+            const fila = crearFilaMovimiento(datos);
+            if (!fila) {
+                console.warn("Línea ignorada:", linea);
+                return;
             }
-
-
-            // DIVISAS
-
-            else if (tipo === "divisas") {
-
-                if (datos.length !== 6) {
-                    console.warn("Línea ignorada:", linea);
-                    return;
-                }
-
-                valores = datos.slice(0, 5);
-
-                valores.forEach((valor, indice) => {
-
-                    const celda = document.createElement("td");
-
-                    celda.textContent =
-                        (valor === "0" || valor === "—") ? "" : valor;
-
-                    if (indice >= 2) {
-                        celda.classList.add("number");
-                    }
-
-                    fila.appendChild(celda);
-
-                });
-
-                fila.appendChild(
-                    crearCeldaFactura(datos[5])
-                );
-
-            }
-
-
-            // DARU
-
-            else if (tipo === "daru") {
-
-                if (datos.length !== 3) {
-                    console.warn("Línea ignorada:", linea);
-                    return;
-                }
-
-                const celdaFecha = document.createElement("td");
-                celdaFecha.textContent = datos[0];
-
-                const celdaDescripcion = document.createElement("td");
-                celdaDescripcion.textContent = datos[1];
-
-                fila.appendChild(celdaFecha);
-                fila.appendChild(celdaDescripcion);
-
-                fila.appendChild(
-                    crearCeldaFactura(datos[2])
-                );
-
-            }
-
             tabla.appendChild(fila);
             movimientosValidos++;
-
         });
 
         if (movimientosValidos === 0) {
-
-            mostrarMensaje(
-                "Se encontró el archivo, pero sus movimientos tienen un formato incorrecto."
-            );
-
+            mostrarMensaje("Se encontró el archivo, pero sus movimientos tienen un formato incorrecto.");
         }
-
     }
 
 
@@ -430,33 +279,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     function mostrarResumen(lineas) {
+        if (!configuracion.resumen || !resumen || resumen.length < 5) return;
 
-        if (!configuracion.resumen) return;
+        limpiarResumen();
 
-        if (!resumen || resumen.length < 5) return;
-
-        resumen.forEach(item => {
-            item.textContent = "—";
-        });
-
-        lineas.forEach(linea => {
-
-            const datos = linea.split(";").map(
-                dato => dato.trim()
-            );
-
+        lineas.forEach((linea) => {
+            const datos = parsearLinea(linea);
             if (datos[0] === "RESUMEN" && datos.length >= 6) {
-
-                resumen[0].textContent = datos[1];
-                resumen[1].textContent = datos[2];
-                resumen[2].textContent = datos[3];
-                resumen[3].textContent = datos[4];
-                resumen[4].textContent = datos[5];
-
+                for (let i = 0; i < 5; i++) {
+                    resumen[i].textContent = datos[i + 1];
+                }
             }
-
         });
-
     }
 
 
@@ -465,44 +299,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     async function cargarDatos() {
-
         try {
-
             const respuesta = await fetch(ARCHIVOS[tipo]);
-
             if (!respuesta.ok) {
                 throw new Error(`Error HTTP: ${respuesta.status}`);
             }
 
             const contenido = await respuesta.text();
-
             lineasCache = contenido
                 .replace(/^\uFEFF/, "")
                 .split(/\r?\n/)
-                .filter(linea => linea.trim() !== "");
+                .filter((linea) => linea.trim() !== "");
 
             mostrarMovimientos(lineasCache);
             mostrarResumen(lineasCache);
-
         } catch (error) {
-
-            console.error(
-                "Error al cargar los datos:",
-                error
-            );
-
-            mostrarMensaje(
-                "No se pudieron cargar los movimientos."
-            );
-
-            if (configuracion.resumen) {
-                resumen.forEach(item => {
-                    item.textContent = "—";
-                });
-            }
-
+            console.error("Error al cargar los datos:", error);
+            mostrarMensaje("No se pudieron cargar los movimientos.");
+            limpiarResumen();
         }
-
     }
 
 
@@ -511,55 +326,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     async function actualizarPeriodo() {
-
         actualizarBotonesPeriodo();
 
         const parametrosActualizados = new URLSearchParams();
-
         parametrosActualizados.set("tipo", tipo);
         parametrosActualizados.set("mes", mesSel);
         parametrosActualizados.set("anio", anioSel);
 
-        history.replaceState(
-            null,
-            "",
-            `${window.location.pathname}?${parametrosActualizados}`
-        );
+        history.replaceState(null, "", `${window.location.pathname}?${parametrosActualizados}`);
 
         // Por ahora, los TXT de prueba contienen febrero de 2026
-
         if (mesSel === "febrero" && anioSel === "2026") {
-
             if (lineasCache.length > 0) {
-
                 mostrarMovimientos(lineasCache);
                 mostrarResumen(lineasCache);
-
             } else {
-
                 await cargarDatos();
-
             }
-
         } else {
-
-            const nombreMes =
-                mesSel.charAt(0).toUpperCase() + mesSel.slice(1);
-
-            mostrarMensaje(
-                `Todavía no hay movimientos registrados para ${nombreMes} ${anioSel}.`
-            );
-
-            if (configuracion.resumen) {
-
-                resumen.forEach(item => {
-                    item.textContent = "—";
-                });
-
-            }
-
+            const nombreMes = mesSel.charAt(0).toUpperCase() + mesSel.slice(1);
+            mostrarMensaje(`Todavía no hay movimientos registrados para ${nombreMes} ${anioSel}.`);
+            limpiarResumen();
         }
-
     }
 
 
@@ -567,148 +355,62 @@ document.addEventListener("DOMContentLoaded", () => {
     // CONTROL DE DROPDOWNS
     // ========================================
 
-    function cerrarTodosLosMenus(excepto) {
-
-        document.querySelectorAll(
-            ".period-select-menu:not([hidden])"
-        ).forEach(menu => {
-
-            if (menu !== excepto) {
-
-                menu.hidden = true;
-
-                const btn = menu.previousElementSibling;
-
-                if (btn) {
-                    btn.setAttribute("aria-expanded", "false");
-                }
-
-            }
-
-        });
-
-    }
-
-
-    function iniciarDropdownPeriodo(
-        containerId,
-        menuId,
-        btnId,
-        onSelect
-    ) {
-
+    function iniciarDropdownPeriodo(containerId, menuId, btnId, onSelect) {
         const container = document.getElementById(containerId);
         const menu = document.getElementById(menuId);
         const btn = document.getElementById(btnId);
 
         if (!container || !menu || !btn) return;
 
-        btn.addEventListener("click", e => {
-
+        btn.addEventListener("click", (e) => {
             e.stopPropagation();
-
             const abierto = !menu.hidden;
-
-            cerrarTodosLosMenus(null);
-
+            cerrarMenusDesplegables(null);
             menu.hidden = abierto;
-
-            btn.setAttribute(
-                "aria-expanded",
-                String(!abierto)
-            );
-
+            btn.setAttribute("aria-expanded", String(!abierto));
         });
 
-
-        menu.addEventListener("click", e => {
-
-            const opcion = e.target.closest(
-                ".period-select-option"
-            );
-
+        menu.addEventListener("click", (e) => {
+            const opcion = e.target.closest(".period-select-option");
             if (!opcion) return;
 
             const valor = opcion.dataset.value;
             const texto = opcion.textContent.trim();
 
-            menu.querySelectorAll(
-                ".period-select-option"
-            ).forEach(o => {
-
+            menu.querySelectorAll(".period-select-option").forEach((o) => {
                 o.classList.remove("is-selected");
-
             });
-
             opcion.classList.add("is-selected");
 
-            const textSpan = btn.querySelector(
-                ".period-select-text"
-            );
-
+            const textSpan = btn.querySelector(".period-select-text");
             if (textSpan) {
                 textSpan.textContent = texto;
             }
 
             menu.hidden = true;
-
             btn.setAttribute("aria-expanded", "false");
-
             onSelect(valor);
-
         });
 
-
-        container.addEventListener("keydown", e => {
-
+        container.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
-
-                menu.hidden = true;
-
-                btn.setAttribute("aria-expanded", "false");
-
+                cerrarMenusDesplegables(null);
                 btn.focus();
-
             }
-
         });
-
     }
 
-
-    iniciarDropdownPeriodo(
-        "mes-select-container",
-        "mes-select-menu",
-        "mes-select-btn",
-        valor => {
-
-            mesSel = valor;
-            actualizarPeriodo();
-
-        }
-    );
-
-
-    iniciarDropdownPeriodo(
-        "anio-select-container",
-        "anio-select-menu",
-        "anio-select-btn",
-        valor => {
-
-            anioSel = valor;
-            actualizarPeriodo();
-
-        }
-    );
-
-
-    document.addEventListener("click", e => {
-
-        if (!e.target.closest(".period-select-container")) {
-            cerrarTodosLosMenus(null);
-        }
-
+    iniciarDropdownPeriodo("mes-select-container", "mes-select-menu", "mes-select-btn", (valor) => {
+        mesSel = valor;
+        actualizarPeriodo();
     });
+
+    iniciarDropdownPeriodo("anio-select-container", "anio-select-menu", "anio-select-btn", (valor) => {
+        anioSel = valor;
+        actualizarPeriodo();
+    });
+
+    vincularCierreMenus();
 
 
     // ========================================
@@ -716,7 +418,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     configurarInterfaz();
-
     actualizarPeriodo();
 
 });

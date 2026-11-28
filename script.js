@@ -20,37 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------------------
-    // 2. Theme Toggle (Diurno / Nocturno - Esquina derecha)
-    // -------------------------------------------------------------------------
-    const THEME_KEY = 'residencia-canaima-theme';
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            document.body.classList.add('dark-theme');
-        } else {
-            document.body.classList.remove('dark-theme');
-        }
-    }
-
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-    applyTheme(initialTheme);
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = document.body.classList.contains('dark-theme');
-            const newTheme = isDark ? 'light' : 'dark';
-            applyTheme(newTheme);
-            try {
-                localStorage.setItem(THEME_KEY, newTheme);
-            } catch (e) {}
-        });
-    }
-
-    // -------------------------------------------------------------------------
-    // 3. User Profile (Visitante - Estático, sin acción)
+    // 2. User Profile (Visitante - Estático, sin acción)
     // -------------------------------------------------------------------------
     const userNameLabel = document.getElementById('userNameLabel');
     if (userNameLabel) {
@@ -58,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------------------
-    // 4. Hero Carousel System (3s rotation, preload & fallback a fondo verde)
+    // 3. Hero Carousel System (3s rotation, preload & fallback a fondo verde)
     // -------------------------------------------------------------------------
     const heroCarouselImages = [
         'imagenes/photo_2026-11-18_16-37-37.jpg',

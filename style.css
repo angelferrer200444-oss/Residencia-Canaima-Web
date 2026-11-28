@@ -44,7 +44,7 @@
 }
 
 /* Dark Mode Theme */
-body.dark-theme {
+[data-theme="dark"] {
     --bg-page: #131a15;
     --text-primary: #edf6f0;
     --text-secondary: #90a898;
@@ -164,19 +164,19 @@ body::before {
 }
 
 /* Ajustes Nocturnos para la atmósfera natural */
-body.dark-theme .nature-ambient-orb {
+[data-theme="dark"] .nature-ambient-orb {
     opacity: 0.75;
 }
 
-body.dark-theme .orb-1 {
+[data-theme="dark"] .orb-1 {
     background: radial-gradient(circle, rgba(45, 107, 71, 0.35) 0%, rgba(28, 68, 44, 0.16) 45%, transparent 70%);
 }
 
-body.dark-theme .orb-2 {
+[data-theme="dark"] .orb-2 {
     background: radial-gradient(circle, rgba(52, 125, 84, 0.28) 0%, rgba(20, 50, 32, 0.14) 50%, transparent 70%);
 }
 
-body.dark-theme .orb-3 {
+[data-theme="dark"] .orb-3 {
     background: radial-gradient(circle, rgba(70, 150, 105, 0.22) 0%, transparent 65%);
 }
 
@@ -249,7 +249,7 @@ body.intro-active .character-card {
     overflow: hidden;
 }
 
-body.dark-theme .intro-backdrop {
+[data-theme="dark"] .intro-backdrop {
     background: radial-gradient(circle at 50% 45%, #1b422a 0%, #11291b 55%, #08140c 100%);
 }
 
@@ -283,7 +283,7 @@ body.dark-theme .intro-backdrop {
     pointer-events: none;
 }
 
-body.dark-theme .intro-carousel-overlay {
+[data-theme="dark"] .intro-carousel-overlay {
     background: radial-gradient(circle at 50% 45%, rgba(12, 32, 21, 0.72) 0%, rgba(6, 16, 11, 0.92) 100%);
 }
 
@@ -535,11 +535,11 @@ body.dark-theme .intro-carousel-overlay {
     display: none;
 }
 
-body.dark-theme .sun-icon {
+[data-theme="dark"] .sun-icon {
     display: none;
 }
 
-body.dark-theme .moon-icon {
+[data-theme="dark"] .moon-icon {
     display: block;
     color: #e3f5eb;
 }
@@ -608,7 +608,7 @@ body.dark-theme .moon-icon {
     pointer-events: none;
 }
 
-body.dark-theme .hero-carousel-overlay {
+[data-theme="dark"] .hero-carousel-overlay {
     background: linear-gradient(135deg, rgba(8, 24, 15, 0.78) 0%, rgba(18, 48, 30, 0.62) 50%, rgba(6, 18, 12, 0.85) 100%);
 }
 
@@ -799,7 +799,7 @@ body.dark-theme .hero-carousel-overlay {
     box-sizing: border-box;
 }
 
-body.dark-theme .scene-card {
+[data-theme="dark"] .scene-card {
     background: linear-gradient(145deg, #1d2a21 0%, #25392b 100%);
     border-color: rgba(82, 163, 119, 0.25);
 }
@@ -997,7 +997,7 @@ body.dark-theme .scene-card {
     line-height: 1.2;
 }
 
-body.dark-theme .sticker-placeholder svg {
+[data-theme="dark"] .sticker-placeholder svg {
     stroke: rgba(255, 255, 255, 0.9);
 }
 
@@ -1049,7 +1049,7 @@ body.dark-theme .sticker-placeholder svg {
     color: var(--hero-primary);
 }
 
-body.dark-theme .char-thumb {
+[data-theme="dark"] .char-thumb {
     background: linear-gradient(135deg, #23382b 0%, #2f4e3b 100%);
 }
 

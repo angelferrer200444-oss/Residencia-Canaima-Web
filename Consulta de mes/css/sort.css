@@ -78,77 +78,22 @@
 }
 
 /* ========================================
-   MENÚ DESPLEGABLE
+   MENÚ DESPLEGABLE (estilos base en styles.css)
 ======================================== */
 
 .ledger-section .sort-menu {
-    position: absolute;
     top: calc(100% + 9px);
-    left: 0;
-
     width: 270px;
-    padding: 6px;
-
-    background: #ffffff;
-    border: 1px solid #e0e3e9;
-    border-radius: 10px;
-
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    z-index: 100;
+    max-height: none;
+    overflow-y: visible;
 }
-
-.ledger-section .sort-menu[hidden] {
-    display: none !important;
-}
-
-/* ========================================
-   OPCIONES DEL MENÚ
-======================================== */
 
 .ledger-section .sort-option {
-    display: block;
-    width: 100%;
     padding: 11px 12px;
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: left;
-
-    color: #414650;
-    background: transparent;
-
-    border: none;
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        padding-left 0.2s ease;
 }
 
 .ledger-section .sort-option:hover {
-    color: #30343b;
-    background: #f0f1f5;
     padding-left: 17px;
-}
-
-.ledger-section .sort-option:active {
-    background: #e5e7ed;
-}
-
-.ledger-section .sort-option:focus-visible {
-    outline: 2px solid #8795ad;
-    outline-offset: -2px;
-    background: #f0f1f5;
-}
-
-.ledger-section .sort-option.is-selected {
-    font-weight: 700;
-    color: #315c3b;
-    background: #eef5ef;
 }
 
 
