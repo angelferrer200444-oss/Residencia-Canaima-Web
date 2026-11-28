@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Hero Carousel System (3s rotation, preload & fallback a fondo verde)
     // -------------------------------------------------------------------------
     const heroCarouselImages = [
-        'imagenes/photo_2026-11-18_16-37-37.jpg',
-        'imagenes/photo_2026-11-18_16-37-37 (2).jpg',
-        'imagenes/photo_2026-11-18_16-37-37 (3).jpg'
+        'menu/imagenes/photo_2026-11-18_16-37-37.jpg',
+        'menu/imagenes/photo_2026-11-18_16-37-37 (2).jpg',
+        'menu/imagenes/photo_2026-11-18_16-37-37 (3).jpg'
     ];
 
     const heroSlides = document.querySelectorAll('.hero-carousel-slide');
