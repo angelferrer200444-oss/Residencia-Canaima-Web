@@ -7,7 +7,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Toast Notification Utility
     // -------------------------------------------------------------------------
     const toast = document.getElementById('toastMessage');
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let toastTimeout;
+
+    function crearAutoCarrusel({ intervaloMs, onAvanzar, contenedorPausa = null, respetarMovimientoReducido = false }) {
+        let timer = null;
+        let estaPausadoPorInteraccion = false;
+
+        function pausar() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function iniciar() {
+            pausar();
+            if (document.hidden || estaPausadoPorInteraccion) return;
+            if (respetarMovimientoReducido && reducedMotionQuery.matches) return;
+            timer = setInterval(onAvanzar, intervaloMs);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) pausar();
+            else iniciar();
+        });
+
+        if (contenedorPausa) {
+            contenedorPausa.addEventListener('mouseenter', () => {
+                estaPausadoPorInteraccion = true;
+                pausar();
+            });
+            contenedorPausa.addEventListener('mouseleave', () => {
+                estaPausadoPorInteraccion = false;
+                iniciar();
+            });
+            contenedorPausa.addEventListener('focusin', () => {
+                estaPausadoPorInteraccion = true;
+                pausar();
+            });
+            contenedorPausa.addEventListener('focusout', (e) => {
+                if (!contenedorPausa.contains(e.relatedTarget)) {
+                    estaPausadoPorInteraccion = false;
+                    iniciar();
+                }
+            });
+        }
+
+        if (respetarMovimientoReducido) {
+            reducedMotionQuery.addEventListener('change', () => {
+                if (reducedMotionQuery.matches) pausar();
+                else iniciar();
+            });
+        }
+
+        return { iniciar, pausar };
+    }
 
     function showToast(message) {
         if (!toast) return;
@@ -40,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const introSlide = document.getElementById('introCarouselSlide');
     const loadedSlideIndices = new Set();
     let currentHeroSlide = 0;
-    let heroCarouselTimer = null;
-    let isWindowActive = !document.hidden;
 
     function markSlideAsLoaded(index) {
         loadedSlideIndices.add(index);
@@ -83,43 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function advanceHeroSlide() {
-        if (!isWindowActive || !heroSlides || heroSlides.length === 0) return;
+        if (!heroSlides || heroSlides.length === 0) return;
         const nextIndex = (currentHeroSlide + 1) % heroSlides.length;
         goToHeroSlide(nextIndex);
     }
 
-    function startHeroCarousel() {
-        if (heroCarouselTimer) clearInterval(heroCarouselTimer);
-        // Ciclo exacto de 3 segundos por imagen
-        heroCarouselTimer = setInterval(advanceHeroSlide, 3000);
-    }
-
-    function pauseHeroCarousel() {
-        if (heroCarouselTimer) {
-            clearInterval(heroCarouselTimer);
-            heroCarouselTimer = null;
-        }
-    }
-
-    // Pausar rotación si el usuario minimiza o cambia de pestaña
-    document.addEventListener('visibilitychange', () => {
-        isWindowActive = !document.hidden;
-        if (isWindowActive) {
-            startHeroCarousel();
-        } else {
-            pauseHeroCarousel();
-        }
+    const heroAutoCarrusel = crearAutoCarrusel({
+        intervaloMs: 3000,
+        onAvanzar: advanceHeroSlide
     });
 
     // Iniciar precarga inmediata y activar ciclo de 3 segundos
     preloadHeroImages();
-    startHeroCarousel();
+    heroAutoCarrusel.iniciar();
 
     // -------------------------------------------------------------------------
     // 4. Hero Card Mouse Interactive Hover (Brillo, inclinación 3D y parallax)
     // -------------------------------------------------------------------------
     const heroCard = document.getElementById('heroCard');
-    const reducedMotionHero = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     if (heroCard) {
         function resetHeroHover() {
@@ -131,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         heroCard.addEventListener('pointermove', (e) => {
-            if (e.pointerType !== 'mouse' || reducedMotionHero.matches || document.body.classList.contains('intro-active')) {
+            if (e.pointerType !== 'mouse' || reducedMotionQuery.matches || document.body.classList.contains('intro-active')) {
                 return;
             }
 
@@ -232,12 +266,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const noticiasWrapper = document.querySelector('.noticias-carousel-wrapper');
     const noticiasTrack = document.getElementById('noticiasTrack');
     const noticiasViewport = document.querySelector('.noticias-viewport');
     const noticiasPrevBtn = document.getElementById('noticiasPrevBtn');
     const noticiasNextBtn = document.getElementById('noticiasNextBtn');
     let currentNoticiaIndex = 0;
     const maxIndex = Math.max(0, noticiasData.length - 1);
+
+    function moverNoticia(delta) {
+        if (delta > 0) {
+            currentNoticiaIndex = currentNoticiaIndex < maxIndex ? currentNoticiaIndex + 1 : 0;
+        } else {
+            currentNoticiaIndex = currentNoticiaIndex > 0 ? currentNoticiaIndex - 1 : maxIndex;
+        }
+        updateCarouselPosition();
+    }
 
     function updateCarouselPosition() {
         if (!noticiasTrack || !noticiasViewport) return;
@@ -280,29 +324,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', updateCarouselPosition);
 
+    const noticiasAutoCarrusel = crearAutoCarrusel({
+        intervaloMs: 6000,
+        onAvanzar: () => moverNoticia(1),
+        contenedorPausa: noticiasWrapper,
+        respetarMovimientoReducido: true
+    });
+
     if (noticiasPrevBtn) {
         noticiasPrevBtn.addEventListener('click', () => {
-            if (currentNoticiaIndex > 0) {
-                currentNoticiaIndex--;
-            } else {
-                currentNoticiaIndex = maxIndex; // Salto circular al final
-            }
-            updateCarouselPosition();
+            moverNoticia(-1);
+            noticiasAutoCarrusel.iniciar();
         });
     }
 
     if (noticiasNextBtn) {
         noticiasNextBtn.addEventListener('click', () => {
-            if (currentNoticiaIndex < maxIndex) {
-                currentNoticiaIndex++;
-            } else {
-                currentNoticiaIndex = 0; // Salto circular al inicio
-            }
-            updateCarouselPosition();
+            moverNoticia(1);
+            noticiasAutoCarrusel.iniciar();
         });
     }
 
     renderNoticiasTrack();
+    noticiasAutoCarrusel.iniciar();
 
     // -------------------------------------------------------------------------
     // 7. Animación de Entrada Pantalla Completa ("Encaje Perfecto")
@@ -321,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Respetar preferencia de movimiento reducido
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (reducedMotionQuery.matches) {
             document.body.classList.remove('intro-active');
             document.body.classList.add('buttons-entered');
             introOverlay.style.display = 'none';
