@@ -895,6 +895,7 @@ body.dark-theme .scene-card {
     border: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     color: var(--text-light);
     font-family: var(--font-heading);
@@ -902,7 +903,7 @@ body.dark-theme .scene-card {
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s ease, filter 0.2s ease, background-color 0.3s ease;
-    text-align: left;
+    text-align: center;
     text-decoration: none;
 }
 
