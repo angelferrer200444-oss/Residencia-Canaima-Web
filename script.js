@@ -116,6 +116,47 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroCarousel();
 
     // -------------------------------------------------------------------------
+    // 4. Hero Card Mouse Interactive Hover (Brillo, inclinación 3D y parallax)
+    // -------------------------------------------------------------------------
+    const heroCard = document.getElementById('heroCard');
+    const reducedMotionHero = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (heroCard) {
+        function resetHeroHover() {
+            heroCard.classList.remove('is-hovering');
+            heroCard.style.setProperty('--hero-tilt-x', '0deg');
+            heroCard.style.setProperty('--hero-tilt-y', '0deg');
+            heroCard.style.setProperty('--hero-shift-x', '0px');
+            heroCard.style.setProperty('--hero-shift-y', '0px');
+        }
+
+        heroCard.addEventListener('pointermove', (e) => {
+            if (e.pointerType !== 'mouse' || reducedMotionHero.matches || document.body.classList.contains('intro-active')) {
+                return;
+            }
+
+            const rect = heroCard.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const normX = (x / rect.width - 0.5) * 2;  // -1 a 1
+            const normY = (y / rect.height - 0.5) * 2; // -1 a 1
+
+            heroCard.classList.add('is-hovering');
+            heroCard.style.setProperty('--hero-mouse-x', `${x.toFixed(1)}px`);
+            heroCard.style.setProperty('--hero-mouse-y', `${y.toFixed(1)}px`);
+            heroCard.style.setProperty('--hero-tilt-x', `${(-normY * 3.5).toFixed(2)}deg`);
+            heroCard.style.setProperty('--hero-tilt-y', `${(normX * 4.5).toFixed(2)}deg`);
+            heroCard.style.setProperty('--hero-shift-x', `${(normX * 8).toFixed(2)}px`);
+            heroCard.style.setProperty('--hero-shift-y', `${(normY * 6).toFixed(2)}px`);
+        });
+
+        heroCard.addEventListener('pointerleave', resetHeroHover);
+        heroCard.addEventListener('pointercancel', resetHeroHover);
+    }
+
+    // -------------------------------------------------------------------------
     // 5. Modal System
     // -------------------------------------------------------------------------
     const infoModal = document.getElementById('infoModal');

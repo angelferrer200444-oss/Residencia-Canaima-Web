@@ -550,6 +550,7 @@ body.intro-active .character-card {
 .hero-wrapper {
     position: relative;
     width: 100%;
+    perspective: 1200px;
 }
 
 /* Hero Main Card - Ocupa más espacio vertical en pantalla según el boceto */
@@ -566,6 +567,45 @@ body.intro-active .character-card {
     padding: clamp(38px, 4.8vh, 60px) 24px;
     box-shadow: var(--shadow-soft);
     text-align: center;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)) translateY(0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    will-change: transform, box-shadow;
+}
+
+.hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    background: radial-gradient(
+        420px circle at var(--hero-mouse-x, 50%) var(--hero-mouse-y, 50%),
+        rgba(205, 248, 222, 0.24) 0%,
+        rgba(130, 215, 165, 0.10) 40%,
+        transparent 75%
+    );
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.22);
+    transition: opacity 0.35s ease;
+}
+
+.hero-card:hover {
+    transform: rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)) translateY(-4px);
+    box-shadow: 0 20px 42px -8px rgba(28, 72, 46, 0.36), 0 0 0 1px rgba(168, 230, 195, 0.28);
+}
+
+[data-theme="dark"] .hero-card:hover {
+    box-shadow: 0 22px 46px -8px rgba(0, 0, 0, 0.65), 0 0 28px rgba(82, 163, 119, 0.22);
+}
+
+.hero-card.is-hovering {
+    transition: transform 0.12s ease-out, box-shadow 0.35s ease;
+}
+
+.hero-card:hover::after {
+    opacity: 1;
 }
 
 /* ==========================================================================
@@ -612,6 +652,10 @@ body.intro-active .character-card {
     background: linear-gradient(135deg, rgba(8, 24, 15, 0.78) 0%, rgba(18, 48, 30, 0.62) 50%, rgba(6, 18, 12, 0.85) 100%);
 }
 
+.hero-card:hover .hero-carousel-slide.active.is-loaded {
+    transform: scale(1.06);
+}
+
 /* Background decorative geometry */
 .hero-bg-shapes {
     position: absolute;
@@ -619,6 +663,13 @@ body.intro-active .character-card {
     pointer-events: none;
     overflow: hidden;
     z-index: 3;
+    transform: translate3d(calc(var(--hero-shift-x, 0px) * -1.4), calc(var(--hero-shift-y, 0px) * -1.4), 0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-card.is-hovering .hero-bg-shapes,
+.hero-card.is-hovering .hero-center-content {
+    transition: transform 0.12s ease-out;
 }
 
 .circle-decoration {
@@ -651,7 +702,8 @@ body.intro-active .character-card {
     flex-direction: column;
     align-items: center;
     gap: clamp(8px, 1.2vh, 12px);
-    transform: none;
+    transform: translate3d(var(--hero-shift-x, 0px), var(--hero-shift-y, 0px), 0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-eyebrow {
