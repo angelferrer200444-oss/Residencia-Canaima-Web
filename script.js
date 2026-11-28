@@ -266,31 +266,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    function iniciarCarruselDeslizante({ track, viewport, prevBtn, nextBtn, slideSelector, gap = 8, autoMs = 0, wrapper = null }) {
+        if (!track || !viewport) return null;
+
+        let currentIndex = 0;
+
+        function getMaxIndex() {
+            return Math.max(0, track.querySelectorAll(slideSelector).length - 1);
+        }
+
+        function actualizarPosicion() {
+            const firstSlide = track.querySelector(slideSelector);
+            const slideWidth = firstSlide ? firstSlide.offsetWidth : viewport.clientWidth;
+            const shift = currentIndex * (slideWidth + gap);
+            track.style.transform = `translateX(-${shift}px)`;
+        }
+
+        function mover(delta) {
+            const maxIndex = getMaxIndex();
+            if (delta > 0) {
+                currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
+            } else {
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
+            }
+            actualizarPosicion();
+        }
+
+        const autoCarrusel = autoMs > 0
+            ? crearAutoCarrusel({
+                intervaloMs: autoMs,
+                onAvanzar: () => mover(1),
+                contenedorPausa: wrapper,
+                respetarMovimientoReducido: true
+            })
+            : null;
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                mover(-1);
+                if (autoCarrusel) autoCarrusel.iniciar();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                mover(1);
+                if (autoCarrusel) autoCarrusel.iniciar();
+            });
+        }
+
+        window.addEventListener('resize', actualizarPosicion);
+        actualizarPosicion();
+        if (autoCarrusel) autoCarrusel.iniciar();
+
+        return { actualizarPosicion, mover };
+    }
+
     const noticiasWrapper = document.querySelector('.noticias-carousel-wrapper');
     const noticiasTrack = document.getElementById('noticiasTrack');
     const noticiasViewport = document.querySelector('.noticias-viewport');
     const noticiasPrevBtn = document.getElementById('noticiasPrevBtn');
     const noticiasNextBtn = document.getElementById('noticiasNextBtn');
-    let currentNoticiaIndex = 0;
-    const maxIndex = Math.max(0, noticiasData.length - 1);
-
-    function moverNoticia(delta) {
-        if (delta > 0) {
-            currentNoticiaIndex = currentNoticiaIndex < maxIndex ? currentNoticiaIndex + 1 : 0;
-        } else {
-            currentNoticiaIndex = currentNoticiaIndex > 0 ? currentNoticiaIndex - 1 : maxIndex;
-        }
-        updateCarouselPosition();
-    }
-
-    function updateCarouselPosition() {
-        if (!noticiasTrack || !noticiasViewport) return;
-        const firstCard = noticiasTrack.querySelector('.scene-card');
-        const cardWidth = firstCard ? firstCard.offsetWidth : noticiasViewport.clientWidth;
-        const gap = 8;
-        const shift = currentNoticiaIndex * (cardWidth + gap);
-        noticiasTrack.style.transform = `translateX(-${shift}px)`;
-    }
 
     function renderNoticiasTrack() {
         if (!noticiasTrack) return;
@@ -318,35 +354,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             noticiasTrack.appendChild(card);
         });
-
-        updateCarouselPosition();
-    }
-
-    window.addEventListener('resize', updateCarouselPosition);
-
-    const noticiasAutoCarrusel = crearAutoCarrusel({
-        intervaloMs: 6000,
-        onAvanzar: () => moverNoticia(1),
-        contenedorPausa: noticiasWrapper,
-        respetarMovimientoReducido: true
-    });
-
-    if (noticiasPrevBtn) {
-        noticiasPrevBtn.addEventListener('click', () => {
-            moverNoticia(-1);
-            noticiasAutoCarrusel.iniciar();
-        });
-    }
-
-    if (noticiasNextBtn) {
-        noticiasNextBtn.addEventListener('click', () => {
-            moverNoticia(1);
-            noticiasAutoCarrusel.iniciar();
-        });
     }
 
     renderNoticiasTrack();
-    noticiasAutoCarrusel.iniciar();
+    iniciarCarruselDeslizante({
+        track: noticiasTrack,
+        viewport: noticiasViewport,
+        prevBtn: noticiasPrevBtn,
+        nextBtn: noticiasNextBtn,
+        slideSelector: '.scene-card',
+        autoMs: 6000,
+        wrapper: noticiasWrapper
+    });
+
+    // Carrusel de Norma del Trabajador / Cronograma Limpieza (reutilizando lógica)
+    iniciarCarruselDeslizante({
+        track: document.getElementById('normasTrack'),
+        viewport: document.querySelector('.normas-viewport'),
+        prevBtn: document.getElementById('normasPrevBtn'),
+        nextBtn: document.getElementById('normasNextBtn'),
+        slideSelector: '.character-card'
+    });
 
     // -------------------------------------------------------------------------
     // 7. Animación de Entrada Pantalla Completa ("Encaje Perfecto")

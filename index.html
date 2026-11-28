@@ -199,18 +199,53 @@
 
             <!-- 4. NORMAS Y ACTA CONSTITUTIVA -->
             <section class="grid-col characters-col">
-                <!-- Card 1: Norma del Trabajador -->
-                <article class="character-card" id="btnNormasTrabajadores">
-                    <div class="char-thumb placeholder-thumb">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                <!-- Slot 1 (Carrusel): Norma del Trabajador / Cronograma Limpieza -->
+                <div class="noticias-carousel-wrapper normas-carousel-wrapper">
+                    <button class="noticias-nav-btn prev-btn" id="normasPrevBtn" aria-label="Documento anterior">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
+                    </button>
+
+                    <div class="noticias-viewport normas-viewport">
+                        <div class="noticias-track normas-track" id="normasTrack">
+                            <!-- Card 1A: Norma del Trabajador -->
+                            <article class="character-card" id="btnNormasTrabajadores">
+                                <div class="char-thumb placeholder-thumb">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                </div>
+                                <div class="char-info">
+                                    <h3 class="char-name">Norma del Trabajador</h3>
+                                </div>
+                            </article>
+
+                            <!-- Card 1B: Cronograma Limpieza -->
+                            <article class="character-card" id="btnCronogramaLimpieza">
+                                <div class="char-thumb placeholder-thumb">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                        <path d="M9 16l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="char-info">
+                                    <h3 class="char-name">Cronograma Limpieza</h3>
+                                </div>
+                            </article>
+                        </div>
                     </div>
-                    <div class="char-info">
-                        <h3 class="char-name">Norma del Trabajador</h3>
-                    </div>
-                </article>
+
+                    <button class="noticias-nav-btn next-btn" id="normasNextBtn" aria-label="Siguiente documento">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
 
                 <!-- Card 2: Norma de Convivencia -->
                 <article class="character-card" id="btnNormasConvivencia">

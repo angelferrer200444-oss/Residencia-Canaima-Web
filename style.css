@@ -794,6 +794,8 @@ body.intro-active .character-card {
     color: var(--hero-primary);
     cursor: pointer;
     padding: 2px;
+    width: 19px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1087,6 +1089,32 @@ body.intro-active .character-card {
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(45, 107, 71, 0.16);
     border-color: var(--hero-primary);
+}
+
+.characters-col > .normas-carousel-wrapper,
+.characters-col > .character-card {
+    flex: 1 1 0;
+}
+
+.characters-col > .character-card {
+    margin-inline: 23px;
+}
+
+.normas-viewport {
+    border-radius: var(--radius-subcard);
+    box-shadow: var(--shadow-card);
+}
+
+.normas-track > .character-card {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    box-shadow: none;
+}
+
+.normas-track > .character-card:hover {
+    transform: none;
 }
 
 .char-thumb {
@@ -1413,9 +1441,9 @@ body.buttons-entered .sticker-bottom {
 }
 
 /* Column 4: Normas y Documentos Buttons Entrance */
-body.buttons-entered .character-card:nth-child(1) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.18s backwards; }
-body.buttons-entered .character-card:nth-child(2) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.26s backwards; }
-body.buttons-entered .character-card:nth-child(3) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.34s backwards; }
+body.buttons-entered .characters-col > :nth-child(1) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.18s backwards; }
+body.buttons-entered .characters-col > :nth-child(2) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.26s backwards; }
+body.buttons-entered .characters-col > :nth-child(3) { animation: buttonEntrance 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) 0.34s backwards; }
 
 @media (prefers-reduced-motion: reduce) {
     .hero-card,
@@ -1498,8 +1526,13 @@ body.buttons-entered .character-card:nth-child(3) { animation: buttonEntrance 0.
         padding-top: 0;
     }
 
+    .characters-col > .normas-carousel-wrapper,
+    .characters-col > .character-card,
     .character-card {
         flex: none;
+    }
+
+    .character-card {
         min-height: 48px;
         justify-content: flex-start;
         text-align: left;
