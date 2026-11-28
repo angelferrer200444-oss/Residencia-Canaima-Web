@@ -14,7 +14,7 @@
     --tag-green-1: #82c49e;
     --tag-green-2: #52a377;
     --tag-green-3: #347d54;
-    --tag-dark: #1e3828;
+    --tag-dark: #2d6b47;
 
     /* Sticker / Action Card Colors */
     --sticker-top: #6db68d;
@@ -53,6 +53,7 @@ body.dark-theme {
     --border-dark: #edf6f0;
     
     --hero-gradient: linear-gradient(110deg, #1c442c 0%, #255b3b 50%, #2f734b 100%);
+    --tag-dark: #1e3828;
     --shadow-soft: 0 12px 30px -4px rgba(0, 0, 0, 0.5);
     --shadow-card: 0 8px 22px rgba(0, 0, 0, 0.4);
 }
@@ -900,7 +901,7 @@ body.dark-theme .scene-card {
     font-size: clamp(14px, 1.1vw, 16px);
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease, background-color 0.3s ease;
     text-align: left;
     text-decoration: none;
 }
@@ -1235,17 +1236,13 @@ body.dark-theme .char-thumb {
     }
 }
 
-.hero-card {
-    /* Fijo sin segunda animación */
-}
+
 
 .hero-eyebrow {
     display: inline-block;
 }
 
-.hero-main-title {
-    /* Fijo tras la animación de intro sin re-animación secundaria */
-}
+
 
 /* Button & Card Entrance Animations */
 @keyframes buttonEntrance {
