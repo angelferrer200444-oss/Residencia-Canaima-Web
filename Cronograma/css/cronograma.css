@@ -1,0 +1,87 @@
+/* ========================================
+   RESIDENCIA CANAIMA
+   CRONOGRAMA DE LIMPIEZA (AJUSTES LOCALES)
+   Reutiliza estilos base, animaciones y modo oscuro de Consulta de mes/css/
+   ======================================== */
+
+.schedule-heading {
+    justify-content: center;
+    text-align: center;
+}
+
+.schedule-heading h2 {
+    margin-bottom: 0;
+}
+
+.schedule-table th:first-child {
+    width: 22%;
+}
+
+.schedule-table th:nth-child(2) {
+    width: 78%;
+}
+
+.schedule-table tbody td:first-child {
+    font-weight: 700;
+    color: var(--header-ink);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.schedule-table tbody td:nth-child(2) {
+    line-height: 1.55;
+}
+
+.schedule-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid #b9d8b7;
+    border-radius: 8px;
+    background: var(--total-bg);
+    color: var(--header-ink);
+    font-size: 0.94rem;
+}
+
+.schedule-note-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+}
+
+.schedule-note p {
+    margin: 0;
+}
+
+[data-theme="dark"] .schedule-note {
+    background: var(--total-bg);
+    border-color: #3d5642;
+    color: #e5ece6;
+}
+
+[data-theme="dark"] .schedule-note strong {
+    color: #85c988;
+}
+
+@media (max-width: 560px) {
+    .schedule-table {
+        min-width: 0;
+    }
+
+    .schedule-table th:first-child {
+        width: 32%;
+    }
+
+    .schedule-table th:nth-child(2) {
+        width: 68%;
+    }
+
+    .schedule-note {
+        align-items: flex-start;
+        padding: 12px 13px;
+        font-size: 0.86rem;
+    }
+}

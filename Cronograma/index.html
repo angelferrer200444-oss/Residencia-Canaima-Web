@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f4f7">
+
+    <title>Residencia Canaima | Cronograma de Limpieza</title>
+
+    <link rel="stylesheet" href="../Consulta de mes/css/styles.css">
+    <link rel="stylesheet" href="../Consulta de mes/css/animations.css">
+    <link rel="stylesheet" href="../Consulta de mes/css/dark-mode.css">
+    <link rel="stylesheet" href="css/cronograma.css">
+
+    <script src="../theme.js"></script>
+</head>
+
+<body>
+
+    <!-- Fondo Dinámico Natural (Hojas y Brisa de Canaima) -->
+    <canvas id="natureCanvas" aria-hidden="true"></canvas>
+
+    <main class="page" style="position:relative;z-index:1;">
+
+        <header class="page-header">
+
+            <button
+                class="back-button"
+                type="button"
+                onclick="window.history.length > 1 ? history.back() : (window.location.href = '../index.html')"
+                aria-label="Volver a la página anterior"
+                title="Volver">
+                <span aria-hidden="true">←</span>
+            </button>
+
+            <div class="header-info">
+                <p class="eyebrow">RESIDENCIA CANAIMA</p>
+                <h1>Cronograma de Limpieza</h1>
+            </div>
+
+        </header>
+
+
+        <section class="ledger-section">
+
+            <div class="section-heading schedule-heading">
+                <h2>Horario semanal</h2>
+            </div>
+
+            <div class="table-wrap">
+
+                <table class="ledger schedule-table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Día</th>
+                            <th scope="col">Descripción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Lunes</td>
+                            <td>Barrido y coleto de áreas comunes, planta baja, lobby, ascensores y escaleras principales.</td>
+                        </tr>
+                        <tr>
+                            <td>Martes</td>
+                            <td>Limpieza de pasillos por pisos, pasamanos, puertas de vidrio y cuartos de basura.</td>
+                        </tr>
+                        <tr>
+                            <td>Miércoles</td>
+                            <td>Lavado de estacionamiento, rampas de acceso, caminerías y áreas verdes exteriores.</td>
+                        </tr>
+                        <tr>
+                            <td>Jueves</td>
+                            <td>Mantenimiento general de ascensores, cuarto de bombas, salón de fiestas y zonas recreativas.</td>
+                        </tr>
+                        <tr>
+                            <td>Viernes</td>
+                            <td>Repaso integral de planta baja, desinfección de puntos de contacto y recolección de desechos.</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <section class="summary-section" aria-label="Nota sobre días no laborables">
+
+            <div class="schedule-note">
+                <span class="schedule-note-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <p><strong>Nota:</strong> Los fines de semana (sábado y domingo) no se labora.</p>
+            </div>
+
+        </section>
+
+
+        <footer class="page-footer">
+            <span>Residencia Canaima</span>
+            <span>Cronograma semanal de limpieza</span>
+        </footer>
+
+    </main>
+
+
+    <script src="../nature-leaves.js"></script>
+
+    <button class="theme-toggle" type="button"
+        aria-label="Cambiar modo" title="Cambiar modo"></button>
+
+</body>
+</html>
